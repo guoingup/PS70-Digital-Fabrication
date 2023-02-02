@@ -164,6 +164,22 @@
     padding: 0px;
 }
 
+/* IMAGES */
+.floated-left
+{
+    float: left;
+    padding:0.2em;
+    /* background: #7BB3FF; */
+}
+
+.floated-right
+{
+    float: left;
+    width: 150px;
+    background: red;
+}
+
+
 /* TILES */
 
 .container {
