@@ -100,6 +100,15 @@
     margin-left: 2%
 }
 
+.subsubhead
+{
+    font-size: large;
+    font-family: "Major Mono Display", "Source Code Pro", "Raleway", serif;
+    font-weight: 500;
+    margin-bottom: 1em;
+    margin-left: 2%
+}
+
 .grand-title
 {
     font-size: 3.2em;
