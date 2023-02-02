@@ -1,34 +1,112 @@
+/* TEXT STYLES */
+
+/* centered text on photo */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.bottom {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.right-title {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    /* transform: translate(-50%, -50%); */
+    float: right;
+    text-align:left;
+}
+
+.thick-font 
+{
+    font-family: "Source Code Pro", monospace;
+    font-weight: 800
+}
+
+/* large font size */
+.bigger
+{
+    font-size: x-large;
+}
+
+/* largest font size */
+.biggest
+{
+    font-size: xxx-large;
+}
+.fun-header
+{
+    font-size: xx-large;
+    font-family: "MV Boli","Zapf Chancery", "Rockwell", "Impact";
+    color: #7BB3FF;
+    font-weight: bold;
+}
+
+.left
+{
+    text-align: left;
+    margin-left: 20px;
+}
+
+
+.demi
+{
+    font-weight: 550;
+}
+
+.italic
+{
+    font-style: italic;
+}
+
 /* headers */
 .subhead
 {
-    font-size: xxx-large;
+    font-size: xx-large;
     font-family: "Source Code Pro", "Raleway", serif;
-    font-weight: 300
+    font-weight: 300;
+    margin-bottom: 0.5em;
+    margin-left: 2%
+}
+
+.grand-title
+{
+    font-size: 3em;
+    font-family: "Source Code Pro", monospace;
+    font-weight:700;
+    white-space: pre-wrap;
 }
 
 /*columns*/
 .column {
     float: left;
     width: 50%;
-    padding: 10px;
+    padding: 0px;
 }
 
 .column35 {
     float: left;
     width: 35%;
-    padding: 10px;
+    padding: 0px;
 }
 
 .column25 {
     float: left;
-    width: 25%;
-    padding: 10px;
+    width: 28%;
+    padding: 0px;
 }
 
 .column40{
     float: left;
-    width: 40%;
-    padding: 10px;
+    width: 37%;
+    padding: 0px;
 }
 
 /* TILES */
@@ -36,6 +114,7 @@
 .container {
     position: relative;
     text-align: center;
+    margin-bottom: 5%;
 }
     .container:hover .overlay {
         opacity: 0;
@@ -55,15 +134,6 @@
     background-color: #008CBA;
   }
   
-  
-/* centered text on photo */
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
 
  /* expansion */
 .thumbnail { 
@@ -85,14 +155,37 @@
     opacity: 1.0;
     z-index: 1;
     opacity: 0.5;
+    color: #ffffff !important;
     } 
+
+    /* A5DEF2, 5BAEB7 1E80C1 414C6B*/
+    .blizzard-filter
+    {
+        filter: invert(84%) sepia(19%) saturate(574%) hue-rotate(160deg) brightness(98%) contrast(93%);
+    }
+
+    .fountain-filter
+    {
+        filter: invert(63%) sepia(35%) saturate(511%) hue-rotate(138deg) brightness(93%) contrast(85%);
+    }
+    .blue-filter
+    {
+        /* filter: invert(66%) sepia(38%) saturate(5334%) hue-rotate(168deg) brightness(100%) contrast(90%); */
+        filter: invert(36%) sepia(88%) saturate(866%) hue-rotate(173deg) brightness(94%) contrast(85%);
+    }
+
+    .dark-filter
+    {
+        filter: invert(25%) sepia(8%) saturate(2862%) hue-rotate(187deg) brightness(94%) contrast(77%);
+    }
     
     /*change the number below to scale to the appropriate size*/ 
     .thumbnail:hover { 
     transform: scale(1.1); 
     border-bottom-color: transparent;
-    color: #f2849e !important;
+    color: #ffffff !important;
     opacity: 1;
+    filter: none !important;
     }
 
 /* Tiles */
@@ -279,53 +372,12 @@ nav .navbar-brand .green
     text-align: center;
 }
 
-/* large font size */
-.bigger
-{
-    font-size: x-large;
-}
-
-.fun-header
-{
-    font-size: xx-large;
-    font-family: "MV Boli","Zapf Chancery", "Rockwell", "Impact";
-    color: #7BB3FF;
-    font-weight: bold;
-}
-
-.left
-{
-    text-align: left;
-    margin-left: 20px;
-}
-
 .subheader
 {
     font-weight: 550;
     color: #7BB3FF;
 }
 
-.column35 {
-    float: left;
-    width: 35%;
-    padding: 10px;
-}
-
-.column65 {
-    float: left;
-    width: 65%;
-    padding: 10px;
-}
-
-.demi
-{
-    font-weight: 550;
-}
-
-.italic
-{
-    font-style: italic;
-}
 
 
 /* Header; from Egshiglen Chuluunhuu*/
@@ -389,8 +441,7 @@ nav .navbar-brand .green
                 height: 3em;
                 line-height: 3em;
                 padding: 0 1.5em;
-                background-color: rgba(255, 255, 255, 0.5);
-                /* border-radius: 4px; */
+                background-color: #32adff82;
                 border: 0;
                 font-size: 0.8em;
                 font-weight: 900;
