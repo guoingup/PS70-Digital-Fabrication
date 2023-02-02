@@ -24,10 +24,28 @@
     text-align:left;
 }
 
+.under-title
+{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    /* transform: translate(-50%, -50%); */
+    float: right;
+    text-align:left;
+    color:#000000;
+    font-size:x-large;
+    font-family: "Source Code Pro";
+    font-weight: 400;
+}
+.highlight {
+    background: rgba(255, 255, 255, 0.281);
+    padding: 0.3em;
+    width: fit-content;
+  }
 .thick-font 
 {
     font-family: "Source Code Pro", monospace;
-    font-weight: 800
+    font-weight: 800;
 }
 
 /* large font size */
@@ -70,19 +88,20 @@
 .subhead
 {
     font-size: xx-large;
-    font-family: "Source Code Pro", "Raleway", serif;
+    font-family: "Major Mono Display", "Source Code Pro", "Raleway", serif;
     font-weight: 300;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
     margin-left: 2%
 }
 
 .grand-title
 {
-    font-size: 3em;
-    font-family: "Source Code Pro", monospace;
+    font-size: 3.2em;
+    font-family: "Major Mono Display", "Source Code Pro", monospace;
     font-weight:700;
     white-space: pre-wrap;
 }
+
 
 /*columns*/
 .column {
@@ -443,9 +462,10 @@ nav .navbar-brand .green
                 padding: 0 1.5em;
                 background-color: #32adff82;
                 border: 0;
-                font-size: 0.8em;
+                font-size: 1em;
                 font-weight: 900;
-                letter-spacing: 0.35em;
+                /* font-family:"Source Code Pro", monospace;
+                letter-spacing: 0.35em; */
                 text-transform: uppercase;
             }
 
