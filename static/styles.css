@@ -1,5 +1,11 @@
 /* TEXT STYLES */
 
+.blue{
+    color:#7BB3FF
+}
+.p{
+    font-family:"Source Code Pro", monospace;
+}
 /* centered text on photo */
 .centered {
     position: absolute;
@@ -108,6 +114,27 @@
     float: left;
     width: 50%;
     padding: 0px;
+}
+
+.column30
+{
+    float: right;
+    width: 30%;
+    padding: 1em; 
+}
+
+.aboutme
+{
+    margin-left: 2em;
+    margin-right: 2em;
+    font-family: "Source Code Pro", monospace;
+}
+
+.column65
+{
+    float: left;
+    width: 65%;
+    padding: 0em; 
 }
 
 .column35 {
