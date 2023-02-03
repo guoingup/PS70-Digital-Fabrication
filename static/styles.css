@@ -168,15 +168,15 @@
 .floated-left
 {
     float: left;
+    position: relative;
     padding:0.2em;
     /* background: #7BB3FF; */
 }
 
 .floated-right
 {
-    float: left;
-    width: 150px;
-    background: red;
+    float: right;
+    width: 400px;
 }
 
 
