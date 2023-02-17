@@ -111,7 +111,12 @@
 
 .subsubsubhead
 {
-    
+    font-size: large;
+    font-family: "Major Mono Display", "Source Code Pro", "Raleway", serif;
+    font-weight: 500;
+    margin-bottom: 1em;
+    margin-left: 2%;
+    color:
 }
 
 .grand-title
