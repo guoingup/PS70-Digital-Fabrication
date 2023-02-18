@@ -57,6 +57,7 @@ class Spin
 int pinA, int pinB, long ONinterval, long OFFinterval;
 
 Spin motor1(3,4,1000,500);
+Spin motor2(5,6,600,2000);
 
 void setup() {
   
@@ -64,4 +65,5 @@ void setup() {
 
 void loop() {
   motor1.Update();
+  motor2.Update();
 }
