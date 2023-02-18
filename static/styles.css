@@ -85,6 +85,11 @@
     font-weight: 550;
 }
 
+.heavy
+{
+    font-weight: 1000;
+}
+
 .italic
 {
     font-style: italic;
