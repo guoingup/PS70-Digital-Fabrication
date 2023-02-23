@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication --- Week 4: Microcontroller Programming</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    <!-- Arduino Code Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      <div class="blue heavy">Week 4</div> The Power of Circuitry: Microcontroller Programming
+    </div>
+    <div class="demi blue bigger">
+      Topics Covered:
+    </div>
+    <ol>
+        <li><b class="blue">How To</b>
+            <ul>
+                <li>Arduino</li>
+                <li>Circuitry</li>
+                <li>More Circuitry</li>
+            </ul>   
+        </li>
+        <li><b class="blue">Explorations</b>
+            <ul>
+                <li>Arduino Boarding</li>
+            </ul>        
+        </li>
+    </ol>
+    <hr>
+    <div>
+      <br>
+      <b class="blue">The assignment:</b>
+        Program an Arduino board to do something. 
+        The examples in the Arduino Projects Book provide good starting points. 
+        You may also wish to use this assignment to build on the previous assignment.
+      <ul>
+        <li>Include code snippets in your documentation.</li>
+        <li>Draw a schematic of your circuit. Use a hand sketch, Flastad, Fusion 360 (Eagle), or other.</li>
+        <li>Bring your project to class Thursday and be ready to do a brief live demo.</li>
+      </ul>
+      <hr>
+      <div class="subsubhead">
+        Reaching Understanding
+      </div>
+        The circuitry and microcontroller programming aspect of this course has been completely<span class="subsubhead">Boggling </span>me, 
+        especially because I wasn't able to make all of lab, in which we covered Arduino programming.
+        <br>
+        <br>
+        To amend this, I decided to read all of the <a href="https://www.arduino.cc/en/Tutorial/Foundations">Arduino Foundations</a> pages, 
+        and really take the time to understand how an Arduino board and program works. 
+        You can find my notes on Notion <a href="https://www.notion.so/Arduino-2ea99e13bbb74b02956b00c0067e5c2d?pvs=4">here</a>.
+        <br><br>
+        <b class="blue">Well, I am so glad I spent that time.</b>
+        <br><br>
+        It quickly became apparent how much easier it is to use Arduino to create circuits
+        is when you understand the hardware and software.
+        Again, my Notion notes are <a href="https://www.notion.so/Arduino-2ea99e13bbb74b02956b00c0067e5c2d?pvs=4">here</a>, 
+        but here are some of the main takeaways which I maybe embarrassingly didn't understand before:
+        <ol>
+          <li>Arduino has <b class="blue">analog</b> pins and <b class="blue">digital</b> pins. 
+          Analog signals are bound to a range, while digital signals provide one of two binary states (0 or 1, LOW or HIGH).</li>
+          <li>You define analog and/or digital pins as inputs or outputs.
+            <ul>
+              <li>Those that receive inputs are connected to sensors, 
+                which record some physical parameter in the environment 
+                and convert it to an electronic signal. 
+                Perhaps surprisingly, analog sensors are simpler, 
+                just feeding the pin some value within a 10-bit resolution range 0-1023.
+                Digital sensors rely on Serial Communication Protocols to utilize binary code for transmitting data.
+              </li>
+              <li>
+                Those pins that are defined as outputs connect to actuators, which instead convert
+                electronic signals into some energy output in the environment, like mechanical energy that 
+                moves a motor or radiant energy that turns on an LED pin.
+                Both digitally and analog-ally(?) controlling the actuator is relatively simple, as you can see below:
+                <pre><code class="language-arduino">
+                  digitalWrite(LED, HIGH); //turn on an LED
+                  digitalWrite(LED, LOW);  //turn off an LED
+
+                  analogWrite(motor, 255); //set a motor to maximum capacity
+                  analogWrite(motor, 25);  //set a motor to 10% of its capacity
+                </code></pre>
+              </li>
+            </ul>
+          <li>Finally, I understand the Arduino IDE structure a little better.
+            Where to define local and global variables (inside the loop function, at the top of the sketch),
+            how to use <code class="language-arduino">millis()</code> instead of <code>delay()</code> for making events happen
+            simultaneously, and how to use Serial Communication as well as configure or write to my Arduino pins.
+          </li>
+        </ol>
+      <br>
+      <br>
+      <hr>
+      <div class="subsubhead">
+        Initial Exploration
+      </div>
+        First thing I did was try to use one of the MEM MICS in the drawer to see if I could monitor sound. 
+        I found the Adafruit MEMS Microphone Breakout SPW2430, which I originally struggled with finding a tutorial
+        before Isa pointed me towards the very helpful and straightforward <a href="https://nathanmelenbrink.github.io/ps70/06_input/index.html">Week 6 tutorial</a>!
+        <br>
+        Below, you can see the Serial Plotter indicating higher input when I snap my fingers or make other sounds!
+        <br><br>
+        <img class="floated" alt="Microphone Circuit" src="./pic_mic.jpg" width=50%>
+        <video width="50%" controls>
+          <source src="./vid_mic.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <br><br>
+        I also tried the introductory circuits in the Arduino Projects Book, in which you use a push-button to complete a circuit that lights up an LED.
+
+      <div class="subsubhead">
+        Controlling the Speed of the Motor
+      </div>
+      What I wanted to do was use buttons as "decrease speed" and "increase speed" buttons
+      for my motorized project from last week (jumping dolphins). I was also hoping to incorporate sound
+      by 
+
+      <img class="floated" alt="Picture of Finished Sculpture_Front" src="./pic_fin_overall.jpg" width=50%>
+      <img class="floated" alt="Picture of Finished Sculpture_Side" src="./pic_fin_wood.jpg" width=50%>
+      <img class="floated" alt="Picture of Finished Sculpture " src="./pic_fin_nexttopower.jpg" width=50%>
+      <video width="50%" controls>
+        <source src="./vid_fin_superspeed.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      <video width="50%" controls>
+        <source src="./vid_fin_normal.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      <video width="50%" controls>
+        <source src="./vid_fin_withbigpower.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+
+      <video width="50%" controls>
+        <source src="./vid_fin_explained.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      
+    </div>
+    
+
+    <br>
+ 
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>

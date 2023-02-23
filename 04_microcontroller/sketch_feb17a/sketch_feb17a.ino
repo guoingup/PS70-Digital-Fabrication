@@ -1,6 +1,3 @@
-//#include <Servo.h> 
-//
-//
 class Spin
 {
   // Class Member Variables
@@ -60,10 +57,17 @@ Spin motor1(3,4,1000,500);
 Spin motor2(5,6,600,2000);
 
 void setup() {
-  
+  Serial.begin(9600);
+  pinMode(potPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
+  potValue = analogRead(potPin);
+  Serial.println(potValue);
+  delay(100);
+  ledValue = map(potValue,0,1023,0,255);
+  analogWrite(ledPin, ledValue);
   motor1.Update();
   motor2.Update();
 }
