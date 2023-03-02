@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication -- Project Proposal</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      Final Project ThinkSpace
+    </div>
+    This will be organized such that my most recent thoughts are on top.
+
+    <div class="subsubhead">
+      Bill of Materials
+    </div>
+    Tentative:
+
+
+    <div class="subsubhead">
+      Timeline
+    </div>
+
+    <div class="subsubhead">
+      Project Plan
+    </div>
+    <hr>
+    <div class="subsubhead">
+      Revision
+    </div>
+    Talking with Ibrahim about my project gave me a new direction for my project.
+    <hr>
+
+    <div class="subsubhead">
+      Proposal
+    </div>
+    
+    <div class="demi blue bigger">
+      I collect shotglasses.
+    </div>
+    <img class="floated-right" alt="Tequila Shotglass" src="../static/tequila_shotglass.png" width=50%>
+    <br>
+    <div>
+      Over the course of my life, I have collected about 80 shotglasses! 
+      They come from places I've traveled
+      and snapshot great times with great people.
+    </div>
+
+    <br>
+
+    <div>
+      But my 80-some shotglasses are getting more and more unwieldy to transport and display.
+      
+      For my final project, I'd like to build a structure that can:
+      <br>
+      <ol>
+        <li><b class="blue">Display</b> My Shotglasses</li> AND/OR
+        <li>Help <b class="blue">Transport</b> My Shotglasses</li>
+      </ol>
+    </div>
+
+    <div>
+      <div class="subsubhead">
+        Ideal Features
+      </div>
+
+      <ol>
+        <li><b class="blue">Scalability/Modular Design:</b> 
+          Ideally, my design would be composed of many modules which I could
+          combine and rearrange in order to scale up or down how many shotglasses
+          I wanted to display or transport, or simply to modify for aesthetics 
+          or different environments.
+        </li> 
+
+        <li><b class="blue">Protective:</b> 
+          This structure should make it easy to move my shotglasses between home and campus,
+          as well as protect shotglasses on display.
+        </li> 
+
+        <li><b class="blue">Separation:</b> 
+          Most shotglasses are made of glass or similarly fragile materials. 
+          It is best, then, for each shotglass to be displayed and/or transported
+          separately, which likely means creating many "compartments."
+        </li> 
+
+        <li><b class="blue">Flexibility/Adjustability for Shotglass Sizing:</b> 
+          While most shotglasses are the same size, I have many many irregular shotglass shapes and sizes.
+          Ideally my structure would allow for many different kinds of shotglasses.
+          That means the structure I make must be very adjustable either 
+          post-creation -- I can adjust a compartment to be taller or shorter, say --
+          or pre-creation -- use template designs that are easy to customize for
+          each of my shotglasses.          
+        </li> 
+
+        <li><b class="blue">Indexing + Automation:</b> 
+          As a stretch goal, and to incorporate microcontroller programming and add a lil something special
+          to my project, I would love to be able to use a screen to select a specific 
+          shotglass to either <mark>highlight</mark> or physically bring to the front.
+          
+          This would involve accurate indexing and labeling of my shotglasses, as well
+          as connection of the Arduino or ESP32 to lights/motors.
+        </li> 
+
+        <li><b class="blue">Dust-Proof:</b> 
+          A covered structure would help keep shotglasses dust-free.
+        </li> 
+
+        <li><b class="blue">Easy Access:</b> 
+          Since I'd like to use my shotglasses from time to time and add new ones,
+          I want a structure that makes it easy to reach each of my shotglasses.
+        </li> 
+        
+      </ol>
+    </div>
+
+<!-- Next Header -->
+    <div class="subsubhead">
+      What Already Exists
+    </div>
+
+    <div>
+      Since the overarching goal is to display/transport my shotglasses,
+      I have a lot of flexibility in terms of building a structure to 
+      accomplish that goal.
+    </div>
+
+    <br>
+
+    <div>
+      Let's begin by looking at what kinds of shotglass displays and storage options are already out there!
+    </div>
+    <div>
+      <a class="floated-left" href="https://www.displays2go.com/P-23539/Shot-Glass-Shelves-with-Silver-Standoffs"><img src="./shotglass_shelf.jpg" width=50%></a>
+      <div>
+        This 24 shot glass display case is available from Displays2Go for $115.
+        This seems:
+        <ol>
+          <li><b>expensive:</b> $115 to hold less than a third of my shotglass collection
+          is certainly not worth it.</li>
+          <li><b>difficult to transport:</b> The display itself is large enough that it seems harvard
+            to transport and not protective for transporting shotglasses.</li>
+          <li><b>not easy access:</b> Since shotglasses are placed in the middle of the shelves, they're hard to reach.</li>
+        </ol>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div>
+      <a class="floated-left" href="https://www.etsy.com/listing/776707887/custom-mountain-shelf-shot-glass-display"><img src="https://i.etsystatic.com/21624256/r/il/725f72/2469540747/il_1588xN.2469540747_5ze7.jpg" width=50%></a>
+      <div>
+        This shelf can hold 30, available on Etsy for $155+.
+      </div>
+      <div>
+        <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/f1WAdh4Bwwg" 
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+      </iframe>
+      This shelf is pretty simple, but lights up!
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div>
+      <div class="subsubhead">
+        Possible Structures and Approaches
+      </div>
+
+      <img class="floated-right" alt="Sketch of Cylinder-Style Project" src="../01_intro/project_cylinders.png" width=50%>
+      <img class="floated-left" alt="Sketch of Prism-Style Project" src="../01_intro/project_prisms.png" width=50%>
+      <img class="floated-right" alt="Sketch of Pie-Style Project" src="../01_intro/project_pies.png" width=50%>
+
+
+      <ol>
+        <li><b class="blue">Revolving Cake-style Tiers:</b> 
+          Create several circle layers that revolve, and can bring one shotglass on any layer to the front.
+        </li> 
+        <li><b class="blue">Lit:</b> 
+          Illuminate either all layers, and/or specific layers, and/or specific shotglasses.
+        </li>
+        <li><b class="blue">Latched, Clamping, Protective Spheres:</b> 
+          Cast-mold or 3D print spheres that are netted/materialed with some give such that help protect
+          whatever's inside. 
+
+          Half-and half spheres that swivel and can latch closed.
+
+          Include adjustable clamps
+
+          This is my favorite approach, but it seems really difficult to scale up to 80+ shotglasses.
+        </li>
+      </ol>
+    </div>
+
+  <br>
+  <br>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
