@@ -128,7 +128,7 @@
     font-weight: 500;
     margin-bottom: 1em;
     margin-left: 2%;
-    color:
+    color: #7BB3FF;
 }
 
 .grand-title
@@ -227,7 +227,9 @@
     background-color: #008CBA;
   }
   
-
+.padded-left {
+    padding-left: 30px;
+}
  /* expansion */
 .thumbnail { 
     /* top:-50px; 

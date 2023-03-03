@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication --- Week 6: Input Devices</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    <!-- Arduino Code Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      <div class="blue heavy">Week 6</div> Input Devices
+    </div>
+    <div class="demi blue bigger">
+      Topics Covered:
+    </div>
+    <ol>
+        <li><b class="blue">How To</b>
+            <ul>
+                <li>3D Scan</li>
+                <li>3D Design on Fusion
+                  <ul>
+                    <li>Image2Surface</li>
+                  </ul>
+                </li>
+                <li>3D Print with Prusa</li>
+            </ul>   
+        </li>
+        <li><b class="blue">Explorations</b>
+            <ul>
+                <li>Bubba</li>
+                <li>Hummingbirds</li>
+                <li>Pumpkin</li>
+            </ul>        
+        </li>
+    </ol>
+    <hr>
+    <div>
+      <br>
+      <b class="blue">The assignment:</b>
+      <ol>
+        <li>Design and print a small object that could not be (easily) made by subtractive methods. Upload your 3D model file (e.g. .f3z), STL file, and sliced gcode file to your documentation. (You can use  to make downloadable links to your files).</li>
+        <li>Scan something using a photogrammetry, LIDAR, or other application.</li>
+        <li>Update your website with more information about your final project, including a bill of materials, timeline, and project plan (including whether you'll need 3D printed parts).</li>
+      </ol>
+      <hr>
+      <div class="subsubhead">
+        Building Up
+      </div>
+        I wanted to make a cute little creature for my small object. 
+        Guided by this <a href="https://www.hackster.io/amalmathewtech/touch-controlled-light-using-arduino-d2f878">tutorial for a touch-controlled light on Hackster.io</a>, 
+        I used the <b>"Forms" workspace</b> in Fusion 360 to mold this super cute fella I call Bubba for his roundness. 
+        He is a salamander-gator-Totodile-dino mix whom I gave stubby chubby arms and legs.
+        <br>
+        <b class="blue">In Fusion 360:</b>
+        <img alt="Bubba in Fusion 1" src="./bubba.png" width=30%>
+        <img alt="Bubba in Fusion Side Profile" src="./bubba_side.png" width=30%>
+
+        <br><br>
+        <b class="blue">In Prusa:</b>
+        <img alt="Bubba in Prusa" src="./bubba_in_prusa.png" width=30%>
+        <img alt="Bubba in Prusa, Sliced" src="./bubba_sliced.png" width=30%>
+        Ain't he cute? Cute lil' Bubba.
+        <br><br>
+
+        Unfortunately, the printer filament went wild and failed to print this fella, but I am going to try again as soon as I get to class.
+        <br><br>
+        <ul>
+          <li><a href="https://a360.co/3ZkkbeI">Download my .f3z file from Autodesk 360 online </a><br></li>
+          <li><a download href="./bubba.stl"> Download my Bubba STL file </a><br></li>
+          <li><a download href="./bubba_0.25n_0.15mm_PLA_MK3S_7h40m.gcode">Download my sliced gcode file </a></li>
+        </ul>
+        <br><br><br><br>
+        <div class="subsubhead">
+        1.2 Design a Small Additive Object: Image2Surface and Hummingbirds
+      </div>
+        I also explored using the Image2Surface add-in (hanskellner's <a href="https://github.com/hanskellner/Fusion360Image2Surface">Github package</a>, as provided on the PS70 website) as a way of creating surfaces from grayscale images.
+        <br><br>
+        I used an image from Maker Forums user <a href="https://forum.makerforums.info/u/Oscar">Oscar Gallegos</a> which he posted on <a href="https://forum.makerforums.info/t/some-of-my-grey-scay-depth-map-images/83684/17">this forum</a>.
+        <br>
+        <b class="blue">It pictures hummingbirds:</b>
+        <br>
+        <img class="floated-left" alt="Grayscale Depth Map of Hummingbirds and Flowers" src="./gray_depth_hummingbirds.jpeg" width=30%>
+        Installing hanskellner's <a href="https://github.com/hanskellner/Fusion360Image2Surface">Github package</a> into my Autodesk Fusion 360 Add-ins, 
+        I was able to create these surfaces <b class="blue">in Fusion 360:</b>
+        <br>
+        <img alt="Hummingbirds in Fusion" src="./image2surface_hummingbirds.png" width=30%>
+        <br>
+        Me messing around with the settings:
+        <img alt="Hummingbirds in Fusion" src="./image2surface_hummingbirds_several.png" width=30%>
+        <br><br>
+        <b class="blue">In Prusa:</b>
+        <br>
+        <img alt="Hummingbirds in Prusa" src="./hummingbirds_in_prusa.png" width=30%>
+        <br>
+        I didn't try printing this one, since there was an issue with the first layer's extrusion I couldn't quite figure out and it seemed like a waste of filament what with the bottom layer 
+        and also the fact that I already want to make Bubba and have no use for these hummingbirds. 
+        Still, glad I installed Image2Surface and understand how to use it!
+
+        <ul>
+          <li><a href="https://a360.co/3EQTztg">Download my Hummingbirds .f3z file from Autodesk 360 online </a><br></li>
+          <li><a download href="./hummingbirds.stl"> Download my Hummingbirds STL file </a><br></li>
+        </ul>
+
+      <br>
+      <br>
+      <hr>
+      <!-- Part 2 -->
+      <div class="subsubhead">
+        2. Scan Something Using Photogrammetry or an Application: PolyCam Pumpkin
+      </div>
+      To scan an object, I tried out the app mentioned in class: PolyCam!
+      <b>Pros:</b> surprisingly accurate + easy to use!
+      <b>Cons:</b> only ~9 free uses + only exports .glb files.
+
+      Thus, I can't use this many more times, but it was cool for a test run.
+      <br><br>
+      I decided to scan a small pumpkin that I've had since last fall and should throw away soon. 
+      Maybe I can make a 3D printed one instead!
+      <br><br>
+      <b class="blue">Pumpkin In Real Life:</b>
+      <br>
+      <img alt="Pumpking IRL" src="./pumpkin_IRL.jpg" width=30%>
+      <img alt="Pumpking IRL" src="./pumpkin_IRL2.jpg" width=30%>
+      <br><br>
+      <b class="blue">Pumpkin On PolyCam After 21 Pictures:</b>
+      <br>
+      
+      <img alt="Pumpkin in PolyCam" src="./pumpkin_polycam.PNG" width=30%>
+      <img alt="Pumpkin in PolyCam" src="./pumpkin_polycam2.PNG" width=30%>
+      <br>
+      It came out super well! A large chunk is missing, but I'm pretty sure that's just because I didn't really cover that area in any of my pictures. (It was in the back, and I wasn't sure if it was okay to rotate the object, or if it used surrounding objects as helpful locators.)
+      <br><br>
+      Because I didn't want to pay for pro, I was forced to download it as a ".glb" file, but found a <a href="https://products.aspose.app/3d/conversion/glb-to-stl">GLB-to STL converter online </a>.
+      <br><br>
+      <b class="blue">Pumpkin In Prusa:</b>
+      <br>
+      <img alt="Pumpkin in Prusa" src="./prusa_sideways pumpkin.png" width=30%>
+      <img alt="Pumpkin in Prusa" src="./prusa_upside pumpkin.png" width=30%>
+      <img alt="Pumpkin in Prusa" src="./pumpkin_sliced.png" width=30%>
+      
+      I plan to print this lumpy pumpkin when I get the chance. :D
+        <br><br>
+        <ul>
+          <li><a href="poly.glb">Download my .glb file from Autodesk 360 online </a><br></li>
+          <li><a download href="./poly.stl"> Download my Pumpkin STL file </a><br></li>
+          <li><a download href="./pumpkin_0.25n_0.15mm_PLA_MK3SMMU2S_6h50m.gcode">Download my sliced gcode file </a></li>
+        </ul>
+
+      <hr> 
+      <!-- Part 3 -->
+      <div class="subsubhead">
+        3. Update My Website with more Final Project Details
+      </div>
+      Please see <a href="../final_project/thinkspace.html">my final project thinkspace</a>!
+        
+    </div>
+    
+
+    <br>
+ 
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
