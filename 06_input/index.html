@@ -54,20 +54,15 @@
     <ol>
         <li><b class="blue">How To</b>
             <ul>
-                <li>3D Scan</li>
-                <li>3D Design on Fusion
-                  <ul>
-                    <li>Image2Surface</li>
-                  </ul>
-                </li>
-                <li>3D Print with Prusa</li>
+                <li>Capacitative Sensing</li>
+                <li></li>
             </ul>   
         </li>
         <li><b class="blue">Explorations</b>
             <ul>
-                <li>Bubba</li>
-                <li>Hummingbirds</li>
-                <li>Pumpkin</li>
+                <li>Make my own Capacitative Sensor: Angle Sensor
+                <li>Mic: Audio Sensor
+                <li>Future: BPM</li>
             </ul>        
         </li>
     </ol>
@@ -76,40 +71,34 @@
       <br>
       <b class="blue">The assignment:</b>
       <ol>
-        <li>Design and print a small object that could not be (easily) made by subtractive methods. Upload your 3D model file (e.g. .f3z), STL file, and sliced gcode file to your documentation. (You can use  to make downloadable links to your files).</li>
-        <li>Scan something using a photogrammetry, LIDAR, or other application.</li>
-        <li>Update your website with more information about your final project, including a bill of materials, timeline, and project plan (including whether you'll need 3D printed parts).</li>
+        <li>Make a capacitive sensor to measure a physical quantity with your microcontroller. Avoid the delay() function; use timers instead.</li>
+        <li>Select another sensor (temperature, microphone, etc.).
+          <ul>
+            <li>Include schematics of each sensor.</li>
+          </ul>
+        </li>
+        <li>Calibrate each sensor by plotting points on a graph. 
+          Discuss the relationship between the signals recorded by your microcontroller and the physical quantities that you're measuring.</li>
       </ol>
+
+
       <hr>
       <div class="subsubhead">
-        Building Up
+        1. Make Your Own Capacitive Sensor: Angles
       </div>
-        I wanted to make a cute little creature for my small object. 
-        Guided by this <a href="https://www.hackster.io/amalmathewtech/touch-controlled-light-using-arduino-d2f878">tutorial for a touch-controlled light on Hackster.io</a>, 
-        I used the <b>"Forms" workspace</b> in Fusion 360 to mold this super cute fella I call Bubba for his roundness. 
-        He is a salamander-gator-Totodile-dino mix whom I gave stubby chubby arms and legs.
-        <br>
         <b class="blue">In Fusion 360:</b>
-        <img alt="Bubba in Fusion 1" src="./bubba.png" width=30%>
-        <img alt="Bubba in Fusion Side Profile" src="./bubba_side.png" width=30%>
+        
+        <img alt="Graph of Quantity vs. Angle" src="./Quantity vs. Angle.png" width=30%>
+        <img alt="Graph of Quantity vs. Volume" src="./Volume.png" width=30%>
 
         <br><br>
         <b class="blue">In Prusa:</b>
         <img alt="Bubba in Prusa" src="./bubba_in_prusa.png" width=30%>
         <img alt="Bubba in Prusa, Sliced" src="./bubba_sliced.png" width=30%>
-        Ain't he cute? Cute lil' Bubba.
-        <br><br>
-
-        Unfortunately, the printer filament went wild and failed to print this fella, but I am going to try again as soon as I get to class.
-        <br><br>
-        <ul>
-          <li><a href="https://a360.co/3ZkkbeI">Download my .f3z file from Autodesk 360 online </a><br></li>
-          <li><a download href="./bubba.stl"> Download my Bubba STL file </a><br></li>
-          <li><a download href="./bubba_0.25n_0.15mm_PLA_MK3S_7h40m.gcode">Download my sliced gcode file </a></li>
-        </ul>
+        
         <br><br><br><br>
         <div class="subsubhead">
-        1.2 Design a Small Additive Object: Image2Surface and Hummingbirds
+        2. Make Another Sensor: Mems Mic
       </div>
         I also explored using the Image2Surface add-in (hanskellner's <a href="https://github.com/hanskellner/Fusion360Image2Surface">Github package</a>, as provided on the PS70 website) as a way of creating surfaces from grayscale images.
         <br><br>
