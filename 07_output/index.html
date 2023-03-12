@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
   
-    <title>PS70: Intro to Digital Fabrication --- Week 6: Input Devices</title>
+    <title>PS70: Intro to Digital Fabrication --- Week 7: Output Devices</title>
   
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -46,7 +46,7 @@
 
   <div class="aboutme">
     <div class="subhead">
-      <div class="blue heavy">Week 6</div> Input Devices
+      <div class="blue heavy">Week 7</div> Putting Out: Output Devices
     </div>
     <div class="demi blue bigger">
       Topics Covered:
@@ -61,7 +61,7 @@
             <ul>
                 <li>Make my own Capacitative Sensor: Angle Sensor
                 <li>Mic: Audio Sensor
-                <li>Future: BPM</li>
+                <li>Future: BPM, RFID</li>
             </ul>        
         </li>
     </ol>
@@ -70,21 +70,132 @@
       <br>
       <b class="blue">The assignment:</b>
       <ol>
-        <li>Make a capacitive sensor to measure a physical quantity with your microcontroller. Avoid the delay() function; use timers instead.</li>
-        <li>Select another sensor (temperature, microphone, etc.).
-          <ul>
-            <li>Include schematics of each sensor.</li>
-            <li>Calibrate each sensor by plotting points on a graph. 
-              Discuss the relationship between the signals recorded by your microcontroller and the physical quantities that you're measuring.</li>
-          </ul>
-        </li>
-         </ol>
+        <li>Use an output device that you haven't used before today.</li>
+        <li>Write a microcontroller program that integrates at least one input device and one output device. Avoid the delay() function and use the C++ class structure.</li>
+        <li>Use an oscilloscope to discover the time domain at which your output device is operating. Is it on a fixed clock? What's its speed? Share images and describe your findings.</li>
+        <li>Prepare CAD files for CNC (next class). Consider either 2D DXF files for routing sheet material (like plywood or OSB), or 3D STL files to mill out a (2.5D) shape. We will also cover molding & casting, so you may want to consider milling a mold.</li>
+      </ol>
 
 
       <hr>
       <div class="subsubhead">
-        1. Make Your Own Capacitive Sensor: Angles
+        1a. Use New Output Devices: LED Strips
       </div>
+
+      <br><b>Code:</b><br>
+      <pre><code class="language-arduino">
+        #include <Adafruit_NeoPixel.h>
+
+          #define LED_PIN   9   //The pin connected to the NeoPixels.
+          #define LED_COUNT 10  //The number of NeoPixels attached.
+          #define DELAY_VAL 300
+          
+          //Declare our NeoPixel strip object:
+          //Arg 1: # of pixels; Arg 2: Arduino pin #; Arg 3: pixel type flags, add together as needed
+          //   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+          //   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+          //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+          //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+          //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
+          
+          Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+          
+          void setup() {
+            // put your setup code here, to run once:
+            strip.begin();
+            strip.show(); //Initialize all pixels to off.
+            strip.setBrightness(20);
+          }
+          
+          void loop() {
+            // put your main code here, to run repeatedly:
+            strip.fill(strip.Color(255,0,255,50));
+            strip.show();
+            delay(100);
+          
+          for(int i=0; i<LED_COUNT; i++) {
+              strip.setPixelColor(i, 0, min(20*i, 255),0);
+              strip.show();
+              delay(DELAY_VAL);
+              strip.setPixelColor(i, min(20*i, 255),0,0);
+              strip.show();
+              delay(DELAY_VAL);
+            }
+          }
+      </code></pre>
+
+      <pre><code class="language-arduino">
+        #include <Adafruit_NeoPixel.h>
+
+          #define LED_PIN   9   //The pin connected to the NeoPixels.
+          #define LED_COUNT 10  //The number of NeoPixels attached.
+          #define DELAY_VAL 300
+          
+          //Declare our NeoPixel strip object:
+          //Arg 1: # of pixels; Arg 2: Arduino pin #; Arg 3: pixel type flags, add together as needed
+          
+          Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+          
+          void setup() {
+            strip.begin();
+            strip.show(); //Initialize all pixels to off.
+            strip.setBrightness(12);
+          }
+          
+          void loop() {
+            strip.clear();
+            for(int i=0; i<LED_COUNT; i++) {
+                strip.setPixelColor(i, min(50+10*i,255),min(255-20*i,255),min(20+15*i,255));
+                strip.show();
+                delay(DELAY_VAL);
+            }
+          }
+      </code></pre>
+
+      <pre><code class="language-arduino">
+        #include <Adafruit_NeoPixel.h>
+
+          #define LED_PIN   9   //The pin connected to the NeoPixels.
+          #define LED_COUNT 10  //The number of NeoPixels attached.
+          #define DELAY_VAL 300
+          
+          //Declare our NeoPixel strip object:
+          //Arg 1: # of pixels; Arg 2: Arduino pin #; Arg 3: pixel type flags, add together as needed
+          
+          Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+          
+          void setup() {
+            strip.begin();
+            strip.show(); //Initialize all pixels to off.
+            strip.setBrightness(12);
+          }
+          
+          void loop() {
+            for(int i=0; i<LED_COUNT; i++) {
+              strip.rainbow(65535-(i*6553),1,255,255,true); //Replace the first value with i*6553 to get the spectrum moving down the strip rather than up the strip.
+              strip.show();
+              delay(100);
+            }
+          }
+      </code></pre>
+
+
+      <div class="subsubhead">
+        1b. Use New Output Devices: Piezo Buzzers
+      </div>
+
+      <div class="subsubhead">
+        2. Write a Microcontroller Program with an Input AND Output: 
+      </div>
+
+      <div class="subsubhead">
+        3. Use Oscilloscope
+      </div>
+
+      <div class="subsubhead">
+        4. Prepare CAD Files for CNC
+      </div>
+        
         I wanted to do something a bit different/not precisely one of the examples for the capacitative sensor I made (haha not better though, just different).
         <br>
         Using the <a href="https://nathanmelenbrink.github.io/ps70/06_input/index.html">Tx-Rx capacitative sensing tutorial</a> from Nathan, 
@@ -98,11 +209,9 @@
         <br>
         <video width="80%" controls>
           <source src="./vid_angle.MOV" type="video/mp4">
-          <br>
         Your browser does not support the video tag.
         </video>
-        <img alt="Picture of Mems Mic Circuit" src="./pic_angle.jpg" width="50%">
-        <br><br><b>Chart:</b><br>
+        <br><b>Chart:</b><br>
         <img alt="Graph of Quantity vs. Angle" src="./Quantity vs. Angle.png" width=80%>
         <br>
         Tada! It gets much more accurate and sensitive at the close range of 0-20 degrees. I would need less bendy strips to ensure better angle accuracy at the single degree-level.
@@ -121,7 +230,6 @@
         </video>
         <br>
         <img alt="Graph of Quantity vs. Volume" src="./Volume.png" width=80%>
-        
         <br>
         I found a relatively smooth curve, which made me pretty happy! I'm sure taking the average of many serial monitor values would yield even better results (compared to my taking the highest value I saw).
       <br>

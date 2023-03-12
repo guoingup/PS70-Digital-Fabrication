@@ -35,4 +35,4 @@ long tx_rx(){         // Function to execute rx_tx algorithm and return a value
    sum += diff;                            // Sums up N_samples of these measurements.
  }
   return sum;
-}       
+}
