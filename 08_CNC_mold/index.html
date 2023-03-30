@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication --- Week 8: CNC Milling and Molding</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    <!-- Arduino Code Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      <div class="blue heavy">Week 8</div> Mold Me Like One of Your French Girls: CNC Milling, Molding and Casting
+    </div>
+    <div class="demi blue bigger">
+      Topics Covered:
+    </div>
+    <ol>
+        <li><b class="blue">How To</b>
+            <ul>
+                <li>CNC Milling</li>
+                <li>Molding and Casting</li>
+            </ul>   
+        </li>
+        <li><b class="blue">Explorations</b>
+            <ul>
+                <li>CNC: Knut's Knife</li>
+                <li>Molding and Casting: Bulbasaur</li>
+                <li>Molding and Casting: Shotglasses</li>
+                <li>Future: CNC Shelf</li>
+            </ul>        
+        </li>
+    </ol>
+    <hr>
+    <div>
+      <br>
+      <b class="blue">The assignment:</b>
+      <ol>
+        <li>Design something and make it using CNC. You may use the ShopBot (2D outlines), the Shaper (2D outlines) or the SRM-20 (2.5D molds).</li>
+        <li>Create something by molding and casting.</li>
+      </ol>
+
+      <hr>
+      <div class="subsubhead">
+        0. CNC Practice: 
+      </div>
+
+      <img alt="Instagram handle @guoingup" src="./pic_guoingup.jpg" width="60%">
+
+      <br><br><br>
+
+      <div class="subsubhead">
+        1. Design and Make Something with CNC: Knut's Knife
+      </div>
+
+      <img alt="Adobe Illustrator Design" src="./pic_designs.jpg" width=40%>
+      <img alt="Adobe Illustrator Design" src="./pic_design_original.jpg" width=40%>
+      <img alt="Adobe Illustrator Design" src="./pic_design.jpg" width=40%>
+
+      <br><br>
+      <video width="50%" controls>
+        <source src="./vid_CNC_in-action.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      <img alt="Knife, me Holding" src="./pic_knifeinboard.jpg" width="100%">
+      <video width="50%" controls>
+        <source src="./vid_pull_knife_out.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      <br><br>
+      Since the ShopBot and the 1/8th inch drill was unable to get the finer details, 
+      I drilled the holes for the "s" and the "e" myself with the drill press:
+      <br><br>
+      <img alt="Adobe Illustrator Design" src="./pic_drill.jpg" width=20%>
+      <img alt="Knife, me Holding" src="./pic_s_hole.jpg" width="30%">
+      <img alt="Knife, me Holding" src="./pic_e_hole.jpg" width="30%">
+      <br><br>
+      <img alt="Knife, me Holding" src="./pic_knife_handheld.jpg" width="100%">
+
+
+  
+
+      <br><br><br>
+
+      <div class="subsubhead">
+        3. Use Oscilloscope
+      </div>
+
+      <div class="subsubhead">
+        4. Prepare CAD Files for CNC
+      </div>
+        
+        I wanted to do something a bit different/not precisely one of the examples for the capacitative sensor I made (haha not better though, just different).
+        <br>
+        Using the <a href="https://nathanmelenbrink.github.io/ps70/06_input/index.html">Tx-Rx capacitative sensing tutorial</a> from Nathan, 
+        I made a pretty crude angle sensor, made up of two (copper?) metal strips taped loosely together by insulating tape, 
+        such that the strips can still bend. 
+
+        Using alligator clips and a protractor, I can measure the actual angle without touching the strips and the quantity produced by the Arduino program on Serial Monitor.
+        
+        <br><br>
+        <b>Example:</b> (not the actual measurements I used! I was a bit more precise about where I was holding the strips. This is just to show how it works and that the serial monitor's values change with the angle.)
+        <br>
+        <video width="80%" controls>
+          <source src="./vid_angle.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <br><b>Chart:</b><br>
+        <img alt="Graph of Quantity vs. Angle" src="./Quantity vs. Angle.png" width=80%>
+        <br>
+        Tada! It gets much more accurate and sensitive at the close range of 0-20 degrees. I would need less bendy strips to ensure better angle accuracy at the single degree-level.
+        <br><br><br>
+        <hr>
+        <br>
+        <div class="subsubhead">
+        2. Make Another Sensor: Mems Mic
+      </div>
+        For the other sensor, I used the Mems Mic, which I also explored in <a href=../04_microcontroller/index.html >Week 4</a>.
+        Below, you can see my method of measurement: taking the top value recorded by the Serial Monitor when playing the same <a href="https://youtu.be/7DLIBePMFTs">loud buzzer sound</a> from YouTube at each of 17 volume levels on my iPhone, including zero volume.
+        <br>
+        <video width="80%" controls>
+          <source src="./vid_mic.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <br>
+        <img alt="Graph of Quantity vs. Volume" src="./Volume.png" width=80%>
+        <br>
+        I found a relatively smooth curve, which made me pretty happy! I'm sure taking the average of many serial monitor values would yield even better results (compared to my taking the highest value I saw).
+      <br>
+      <br>
+      <hr>
+      <!-- Part 2 -->
+      <div class="subsubhead">
+        Future Hope: BPM Sensor, RFID Sensor
+      </div>
+      In the future, I'd like to make a BPM Sensor as well as a RFID sensor! 
+      <br><br><br>
+    </div>
+    
+
+    <br>
+ 
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
