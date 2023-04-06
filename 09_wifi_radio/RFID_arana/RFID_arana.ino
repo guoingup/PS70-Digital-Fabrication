@@ -3,7 +3,7 @@
 #include <MFRC522.h>//https://github.com/miguelbalboa/rfid
 //Constants
 #define SS_PIN 5
-#define RST_PIN 0
+#define RST_PIN 20
 //Parameters
 const int ipaddress[4] = {103, 97, 67, 25};
 //Variables

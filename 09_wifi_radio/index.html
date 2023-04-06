@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication --- Week 9: Bluetooth, Internet, Radio (IoT)</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    <!-- Arduino Code Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      <div class="blue heavy">Week 9</div> Hook Me Up... To The Internet!: Bluetooth, Internet, Radio
+    </div>
+    <div class="demi blue bigger">
+      Topics Covered:
+    </div>
+    <ol>
+        <li><b class="blue">How To</b>
+            <ul>
+                <li>Connect to Internet, Bluetooth, Radio</li>
+            </ul>   
+        </li>
+        <li><b class="blue">Explorations</b>
+            <ul>
+                <li>Group Project: Boomba</li>
+            </ul>        
+        </li>
+    </ol>
+    <hr>
+    <div>
+      <br>
+      <b class="blue">The assignment:</b>
+      <ol>
+        <li>Work with a partner or group of 3. Program one or more microcontroller(s) to obtain and respond to information from the internet or radio. Your project should include at least one input and one output.</li>
+      </ol>
+      <br>
+
+      <hr>
+      <br>
+
+      <div class="subsubhead">
+        1. Group Project: Boomba
+      </div>
+      <div>
+        I worked with Connor and Jackson, my dear tablemates, to create a cute lil guy on wheels who moves forward, backwards, left, or right in response to corresponding RFID tags.
+        <br><br>
+
+        <img alt="Circuit" src="./circuits.jpg" width="30%">
+        <img alt="Boomba" src="./Boomba.jpg" width="30%">
+        <img alt="RFID Tags" src="./RFID_tags.JPG" width="30%">
+
+        <video width="50%" controls>
+          <source src="./meet_Boomba.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+
+        <i>The design:</i>
+        <ul>
+          <li>I outlined the knife used near the end of the movie hehe:
+            <img alt="Outline of Knife in Knives Out" src="./pic_knife_outline.jpg" width="30%">
+          </li>
+          <li>And I wanted the blade to say "Knut needs a Knife" -- but in the typeface of Knives Out's title card:
+            <ul>
+              <li>Here's the Knives Out title card:
+                <img alt="Knives Out title" src="./Knives_Out_title.png" width=40%></li>
+              <li>
+                I used the title card + a picture of Nic Dennis's <a href="https://nicdennisdesign.myportfolio.com/agatha-font#:~:text=This%20font%20I%20created%20after,alphabet%20was%2C%20sadly%20never%20created.">Agatha Font</a> + Adobe Illustrator's handy-dandy image trace feature:
+                <br>
+                Agatha Font:
+                <img alt="Agatha Font" src="./agatha_font.jpg" width=40%>
+                <br>
+                Initial designs:
+                <img alt="Adobe Illustrator Design" src="./pic_designs.jpg" width=40%>
+                <br>
+                And here's my first knife design:
+                <img alt="Knives Out title" src="./pic_Knut_Knife_needsa.jpg" width=40%>
+              </li>
+            </ul>
+          </li>
+          <li>I added some custom detailing to the handle, including spirals.
+            <br>Unnecessary detail on that:
+            <ul>
+              <li>To create a similar spiral, you can </li>
+            </ul>
+          </li>
+        </ul>
+        <br>
+        <b>One DXF file later...</b>
+        <br><br>
+        <i>In Aspire:</i>
+        <br>
+        I used the pocket toolpath to flatten around the words for the blade, and
+        <img alt="Adobe Illustrator Design" src="./pic_design_original.jpg" width=40%>
+        <img alt="Adobe Illustrator Design" src="./pic_design.jpg" width=40%>
+
+        <br><br>
+        I found Aspire surprisingly intuitive with all the tools I needed to finish the design on. 
+        It seemed that there were still too many fine details for our 1/8th inch end mill to handle, 
+        <br><br>
+        <video width="50%" controls>
+          <source src="./vid_CNC_in-action.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <img alt="Knife, me Holding" src="./pic_knifeinboard.jpg" width="100%">
+        <video width="50%" controls>
+          <source src="./vid_pull_knife_out.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <br><br>
+        Since the ShopBot and the 1/8th inch drill was unable to get the finer details, 
+        I drilled the holes for the "s" and the "e" myself with the drill press:
+        <br><br>
+        <img alt="Adobe Illustrator Design" src="./pic_drill.jpg" width=20%>
+        <img alt="Knife, me Holding" src="./pic_s_hole.jpg" width="30%">
+        <img alt="Knife, me Holding" src="./pic_e_hole.jpg" width="30%">
+        <br><br>
+        <img alt="Knife, me Holding" src="./pic_knife_handheld.jpg" width="100%">
+
+      </div>
+      
+
+      <br>
+      I even got OoM
+  
+
+      <br><br><br>
+
+      <div class="subsubhead">
+        2. Molding and Casting: Bulbasaur + Shotglasses
+      </div>
+
+      <img alt="Knife, me Holding" src="./pic_molds1.jpg" width="40%">
+      <img alt="Knife, me Holding" src="./pic_molds2.jpg" width="40%">
+
+      <br>When I went home, noticed some Oo Moo in my hair! :D It really gets everywhere.
+      <img alt="Knife, me Holding" src="./pic_hair_oomoo.jpg" width="40%">
+
+      <img alt="Knife, me Holding" src="./pic_an_attempt.jpg" width="40%">
+      <img alt="Knife, me Holding" src="./pic_upsetting.jpg" width="40%">
+
+      <img alt="Knife, me Holding" src="./pic_bulby.jpg" width="40%">
+      <img alt="Knife, me Holding" src="./pic_bulby2.jpg" width="40%">
+      <img alt="Knife, me Holding" src="./pic_bulbies.jpg" width="40%">
+
+
+      <br>
+      <hr>
+      <!-- Part 2 -->
+      <div class="subsubhead">
+        Future Hope: Shelf/Table
+      </div>
+        I was hoping to make a tiny shelf table with the CNC Machine and OSB. Maybe I'll have time in future.
+      <br><br><br>
+    </div>
+    
+
+    <br>
+ 
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
