@@ -1,11 +1,3 @@
-/*
- * This ESP32 code is created by esp32io.com
- *
- * This ESP32 code is released in the public domain
- *
- * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-rfid-nfc
- */
-
 #include <SPI.h>
 #include <MFRC522.h>
 
@@ -22,6 +14,16 @@
 //IRQ attached to nothing
 //GND --> GND
 //RST --> 20 GPIO20 (altered)
+//VCC --> 3.3V
+
+//ESP32-Mini
+//SDA --> ESP32 5 GPIO5
+//SCK --> ESP32 11 GPIO18
+//MOSI --> 23 GPIO23
+//MISO --> 19 GPIO19
+//IRQ attached to nothing
+//GND --> GND
+//RST --> 27 GPIO27
 //VCC --> 3.3V
 
 const char* ssid = "MAKERSPACE";
