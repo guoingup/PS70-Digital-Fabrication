@@ -79,33 +79,41 @@
         1. Group Project: Boomba
       </div>
       <div>
-        I worked with Connor and Jackson, my dear tablemates, to create a cute lil guy on wheels who moves forward, backwards, left, or right in response to corresponding RFID tags.
+        This week, I teamed up with my dear tablemates Connor and Jackson. :D
+        <br><br>
+        Since I want to use RFID sensing in my final project and Connor wanted to create a physical robot that would listen to directions for his final project, 
+        we decided to create a robot on wheels who moves in response to corresponding RFID tags. Thus, RFID sensing was our input, movement of the robot was our output, and we decided to use Internet as the connection.
+        <br><br>
+        We split it up so that I would handle the RFID sensing, Connor the robot, and Jackson the connection from one to the other via Internet.
+
+        To get a better sense of our project, check out <a href="https://cjleggett.github.io/ps70/weeks/9.html">Connor's</a> and <a href="https://jacksonmoody.github.io/PS70/week9">Jackson's</a> websites for a better look at the cool things they did, 
+        including creating the Roomba-like robot, sending the motor commands, and a prototype that used 4 buttons instead!
+
         <br><br>
 
+        
+        <b class="blue">RFID:</b>
+        I used the RFID RC522 Module! To ensure that we could send signals to the Internet, I hooked it up to an ESP32.
+
+        <br>
+        The RFID setup and tags:
         <img alt="Circuit" src="./circuits.jpg" width="30%">
-        <img alt="Boomba" src="./Boomba.jpg" width="30%">
         <img alt="RFID Tags" src="./RFID_tags.JPG" width="30%">
-        <br><br>
-        Demo!:<br>
-        <video width="50%" controls>
-          <source src="./meet_Boomba.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
+        (Note the fine soldering work)
 
         <br><br>
-
-        We split it up so that I would handle the input (RFID tags), Jackson would handle the Internet server and commands, and Connor would handle the creation of the physical robot.
-
         <br>
-        The RFID part definitely gave me some trouble for a while, since I didn't have the exact ESP-32-WROOM model that the tutorials used, and the ESP32-SOLO-S2 I was using was missing some of the necessary pins.
-        By replacing it with the ESP32-Mini, however, I was able to find all of the pins I needed and was good to go.
-        <br>
-        <li><a download href="./final_rfid/final_rfid.ino"> Download my Arduino Code </a><br></li>
+        It took me a while to properly interface with the RFID sensor since I didn't have the exact ESP32-WROOM-32 model that most tutorials used, and the ESP32-S2-SOLO I was using was missing some of the necessary pins for these tutorials.
+        I tried 4-5 different tutorials and studied the spec sheets of the <a href="https://www.espressif.com/sites/default/files/documentation/esp32-s2-solo_esp32-s2-solo-u_datasheet_en.pdf">ESP32-S2-SOLO2</a> and the <a href="https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf">ESP32-WROOM-32</a> to appropriately replace one GPIO pin for another.
+        Finally, by simply replacing using the ESP32-Mini (thanks Nathan!) instead, I was able to find all of the pins I needed and got the reader to scan tags.
+        <br><br>
+        After finally getting the RFID Reader to sense the presence of RFID tags and display their UIDs with the help of the excellent "MFRC522.h" Arduino library package, 
+        I modified Connor's code for connecting to the NodeJS server and POSTing commands as well as code from tutorials on <a href="https://esp32io.com/tutorials/esp32-rfid-nfc">esp32.io.com</a> and <a href="https://randomnerdtutorials.com/security-access-using-mfrc522-rfid-reader-with-arduino/">Random Nerd Tutorials</a>
+        to create code that would POST either forward, backward, left, or right commands online depending on the unique tag that it scanned.
 
-        Our final code looked like this:
-
+        The final code for the input to the ESP32-Mini microcontroller (with my notes about specific pin wiring):
         <pre><code class="language-arduino">
-          #include <SPI.h>
+            #include <SPI.h>
             #include <MFRC522.h>
             
             //#include "Constants.h"
@@ -277,7 +285,22 @@
             }
         </code></pre>
 
+        <li><a download href="./final_rfid/final_rfid.ino"> Download my Arduino Code </a><br></li>
+
+
+        <br><br>
+
+        The Final Result!
+        <img alt="Boomba" src="./Boomba.jpg" width="30%">
+        <br><br>
+        Demo!:<br>
+        <video width="50%" controls>
+          <source src="./meet_Boomba.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+
     </div>
+    
     
 
     <br>
