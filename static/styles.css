@@ -201,6 +201,11 @@
     width: 400px;
 }
 
+.floated-right-anywidth
+{
+    float: right;
+}
+
 
 /* TILES */
 
