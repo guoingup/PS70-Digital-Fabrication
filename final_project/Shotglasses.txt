@@ -1,0 +1,3 @@
+UID	Name	Date Acquired	Location Acquired	About	Favorite?	Gift?	Outside US?	Warm or Cold?
+AA AA AA A1	Shotglass 1	6-Jun-20	"Wuhan, China"					Warm
+AA AA AA A2	Shotglass 2	20-Jul-21	Yellowstone National Park	I picked this up.	Yes	Yes	No	Cold

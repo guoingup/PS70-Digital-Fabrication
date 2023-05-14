@@ -152,7 +152,7 @@
           }
       </code></pre>
 
-      <pre><code class="language-arduino">
+      <pre><code class="language-arduino"> 
         #include <Adafruit_NeoPixel.h>
 
           #define LED_PIN   9   //The pin connected to the NeoPixels.
@@ -171,7 +171,7 @@
           }
           
           void loop() {
-            for(int i=0; i<LED_COUNT; i++) {
+            for(int i=0; i < LED_COUNT; i++) {
               strip.rainbow(65535-(i*6553),1,255,255,true); //Replace the first value with i*6553 to get the spectrum moving down the strip rather than up the strip.
               strip.show();
               delay(100);
