@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>PS70: Intro to Digital Fabrication --- Week 10: Machine Building</title>
+  
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Internal Stylesheets -->
+    <!-- <link href="./style.css" rel="stylesheet"> -->
+    <link href="../static/styles.css" rel="stylesheet">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    <!-- Arduino Code Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+  </head>
+
+<body>
+
+  <br>
+  <br>
+
+<header id="header">
+    <!-- Nav -->
+      <nav>
+        <ul>
+          <li><a href="../index.html">Explorations</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+
+  <div class="aboutme">
+    <div class="subhead">
+      <div class="blue heavy">Week 10</div> Machine Building
+    </div>
+      <br>
+      <b class="blue">The assignment:</b>
+      <ol>
+        <li>Work with a partner or group of 3. Program one or more microcontroller(s) to obtain and respond to information from the internet or radio. Your project should include at least one input and one output.</li>
+      </ol>
+      <br>
+
+      <hr>
+      <br>
+
+      <div class="subsubhead">
+        1. Group Project: Boomba
+      </div>
+      <div>
+
+
+
+
+        Although we had originally intended on simply using a pen or something similar as our end effector, we suddenly considered how much cooler it would be to create our drawings with isopropyl/rubbing alcohol, then light it on fire!
+        <br><br>
+        And then we considered how much safer it would be to create those drawings with water!
+        <br><br>
+        Thus, our end effector was a mini pump that drew from a water container on the chassis. We used this relay module tutorial from Random Nerd Tutorials to control the flow of the pump using a 5V 2-channel relay module (though you only need one of these channels). The code itself is simple, sending LOW to the relay pin to get the current flowing, and HIGH to stop the current. A few tests proved the flow and stop to be rather immediate.
+
+Below is the relay code, which got integrated into the full code later on. 
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          /*********
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/esp32-relay-module-ac-web-server/
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+*********/
+//changed from 26
+const int relay = 40;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(relay, OUTPUT);
+}
+
+void loop() {
+  // Normally Open configuration, send LOW signal to let current flow
+  // (if you're usong Normally Closed configuration send HIGH signal)
+  digitalWrite(relay, LOW);
+  Serial.println("Current Flowing");
+  delay(5000); 
+  
+  // Normally Open configuration, send HIGH signal stop current flow
+  // (if you're usong Normally Closed configuration send LOW signal)
+  digitalWrite(relay, HIGH);
+  Serial.println("Current not Flowing");
+  delay(1000);
+}
+
+
+        </code></pre>
+
+
+        This week, I teamed up with my dear tablemates Connor and Jackson. :D
+        <br><br>
+        Since I want to use RFID sensing in my final project and Connor wanted to create a physical robot that would listen to directions for his final project, 
+        we decided to create a robot on wheels who moves in response to corresponding RFID tags. Thus, RFID sensing was our input, movement of the robot was our output, and we decided to use Internet as the connection.
+        <br><br>
+        We split it up so that I would handle the RFID sensing, Connor the robot, and Jackson the connection from one to the other via Internet.
+
+        To get a better sense of our project, check out <a href="https://cjleggett.github.io/ps70/weeks/9.html">Connor's</a> and <a href="https://jacksonmoody.github.io/PS70/week9">Jackson's</a> websites for a better look at the cool things they did, 
+        including creating the Roomba-like robot, sending the motor commands, and a prototype that used 4 buttons instead!
+
+        <br><br>
+
+        
+        <b class="blue">RFID:</b>
+        I used the RFID RC522 Module! To ensure that we could send signals to the Internet, I hooked it up to an ESP32.
+
+        <br>
+        The RFID setup and tags:
+        <img alt="Circuit" src="./circuits.jpg" width="30%">
+        <img alt="RFID Tags" src="./RFID_tags.JPG" width="30%">
+        (Note the fine soldering work)
+
+        <br><br>
+        <br>
+        It took me a while to properly interface with the RFID sensor since I didn't have the exact ESP32-WROOM-32 model that most tutorials used, and the ESP32-S2-SOLO I was using was missing some of the necessary pins for these tutorials.
+        I tried 4-5 different tutorials and studied the spec sheets of the <a href="https://www.espressif.com/sites/default/files/documentation/esp32-s2-solo_esp32-s2-solo-u_datasheet_en.pdf">ESP32-S2-SOLO2</a> and the <a href="https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf">ESP32-WROOM-32</a> to appropriately replace one GPIO pin for another.
+        Finally, by simply replacing using the ESP32-Mini (thanks Nathan!) instead, I was able to find all of the pins I needed and got the reader to scan tags.
+        <br><br>
+        After finally getting the RFID Reader to sense the presence of RFID tags and display their UIDs with the help of the excellent "MFRC522.h" Arduino library package, 
+        I modified Connor's code for connecting to the NodeJS server and POSTing commands as well as code from tutorials on <a href="https://esp32io.com/tutorials/esp32-rfid-nfc">esp32.io.com</a> and <a href="https://randomnerdtutorials.com/security-access-using-mfrc522-rfid-reader-with-arduino/">Random Nerd Tutorials</a>
+        to create code that would POST either forward, backward, left, or right commands online depending on the unique tag that it scanned.
+
+        The final code for the input to the ESP32-Mini microcontroller (with my notes about specific pin wiring):
+        <pre><code class="language-arduino">
+            #include <SPI.h>
+            #include <MFRC522.h>
+            
+            //#include "Constants.h"
+            #include <WiFi.h>
+            #include <HTTPClient.h>
+            #include <ArduinoJson.h>
+            
+            //ESP32-SOLO-S2
+            //SDA --> ESP32 5 GPIO5
+            //SCK --> ESP32 11 GPIO18
+            //MOSI --> 21 GPIO21 (altered)
+            //MISO --> 19 GPIO19
+            //IRQ attached to nothing
+            //GND --> GND
+            //RST --> 20 GPIO20 (altered)
+            //VCC --> 3.3V
+            
+            //ESP32-Mini
+            //SDA --> ESP32 5 GPIO5
+            //SCK --> ESP32 11 GPIO18
+            //MOSI --> 23 GPIO23
+            //MISO --> 19 GPIO19
+            //IRQ attached to nothing
+            //GND --> GND
+            //RST --> 27 GPIO27
+            //VCC --> 3.3V
+            
+            const char* ssid = "MAKERSPACE";
+            const char* password = "12345678";
+            
+            const String speedUrl = "https://ps70-api.vercel.app/speed";
+            const String directionUrl = "https://ps70-api.vercel.app/direction";
+            
+            #define SS_PIN  5  //ESP32 pin GIOP5 
+            #define RST_PIN 27 //ESP32 pin GIOP20
+            
+            MFRC522 rfid(SS_PIN, RST_PIN);
+            
+            void setup() {
+              
+              Serial.begin(9600);
+              // Connect to the wifi
+              WiFi.begin(ssid, password);
+              while (WiFi.status() != WL_CONNECTED) {
+                delay(1000);
+                Serial.println("Connecting to WiFi");
+              }
+              Serial.println("Connected to the WiFi network");
+              
+              SPI.begin(); // init SPI bus
+              rfid.PCD_Init(); // init MFRC522
+            
+              Serial.println("Tap an RFID/NFC tag on the RFID-RC522 reader");
+            }
+            
+            void loop() {
+              if (rfid.PICC_IsNewCardPresent()) { // new tag is available
+                if (rfid.PICC_ReadCardSerial()) { // NUID has been readed
+                  
+                  // print Tag Type
+                  MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
+                  Serial.print("RFID/NFC Tag Type: ");
+                  Serial.println(rfid.PICC_GetTypeName(piccType));
+            
+                  // print UID in Serial Monitor in the hex format
+                  Serial.print("UID:");
+                  String content = "";
+                  byte letter;
+                  for (byte i = 0; i < rfid.uid.size; i++) {
+                    Serial.print(rfid.uid.uidByte[i] < 0x10 ? " 0" : " ");
+                    Serial.print(rfid.uid.uidByte[i], HEX);
+                    content.concat(String(rfid.uid.uidByte[i] < 0x10 ? " 0" : " "));
+                    content.concat(String(rfid.uid.uidByte[i], HEX));
+                  }
+                  Serial.println();
+                  content.toUpperCase();
+            
+                  // Forward Tag
+                  if (content.substring(1) == "A1 7C 8D 1D") {
+                    Serial.println("Forward Tag Recognized!");
+                    Serial.println();
+                    String direction = "forward";
+                    Serial.println("direction=" + direction + "&time=" + millis());
+                    if ((WiFi.status() == WL_CONNECTED)) {
+                      HTTPClient http;
+                      http.begin(directionUrl + "?direction=" + direction + "&time=" + millis());
+                      int httpResponseCode = http.POST("");
+                      String payload = http.getString();
+                      Serial.println(payload);
+                      Serial.println(httpResponseCode);
+                      Serial.println("POSTED :D");
+                      http.end();
+                    }
+                    else {
+                      Serial.println("Wifi not detected.");
+                    }
+                  }
+                  // Backwards Tag
+                  else if (content.substring(1) == "2A 2A 75 17") {
+                    Serial.println("Backward Tag Recognized!");
+                    Serial.println();
+                    String direction = "backward";
+                    Serial.println("direction=" + direction + "&time=" + millis());
+                    if ((WiFi.status() == WL_CONNECTED)) {
+                      HTTPClient http;
+                      http.begin(directionUrl + "?direction=" + direction + "&time=" + millis());
+                      int httpResponseCode = http.POST("");
+                      String payload = http.getString();
+                      Serial.println(payload);
+                      Serial.println(httpResponseCode);
+                      Serial.println("POSTED :D");
+                      http.end();
+                    }
+                    else {
+                      Serial.println("Wifi not detected.");
+                    }
+                  }
+            
+                  // Left Tag
+                  else if (content.substring(1) == "37 23 27 7B") {
+                    Serial.println("Left Tag Recognized!");
+                    Serial.println();
+                    String direction = "left";
+                    Serial.println("direction=" + direction + "&time=" + millis());
+                    if ((WiFi.status() == WL_CONNECTED)) {
+                      HTTPClient http;
+                      http.begin(directionUrl + "?direction=" + direction + "&time=" + millis());
+                      int httpResponseCode = http.POST("");
+                      String payload = http.getString();
+                      Serial.println(payload);
+                      Serial.println(httpResponseCode);
+                      Serial.println("POSTED :D");
+                      http.end();
+                    }
+                    else {
+                      Serial.println("Wifi not detected.");
+                    }
+                  }
+            
+                  // Right Tag
+                  else if (content.substring(1) == "F7 08 2A 7B") {
+                    Serial.println("Right Tag Recognized!");
+                    Serial.println();
+                    String direction = "right";
+                    Serial.println("direction=" + direction + "&time=" + millis());
+                    if ((WiFi.status() == WL_CONNECTED)) {
+                      HTTPClient http;
+                      http.begin(directionUrl + "?direction=" + direction + "&time=" + millis());
+                      int httpResponseCode = http.POST("");
+                      String payload = http.getString();
+                      Serial.println(payload);
+                      Serial.println(httpResponseCode);
+                      Serial.println("POSTED :D");
+                      http.end();
+                    }
+                    else {
+                      Serial.println("Wifi not detected.");
+                    }
+                  }
+            
+                  else {
+                    Serial.println("Tag not recognized.");
+                  }
+            
+                  rfid.PICC_HaltA(); // halt PICC
+                  rfid.PCD_StopCrypto1(); // stop encryption on PCD
+                }
+              }
+            }
+        </code></pre>
+
+        <li><a download href="./final_rfid/final_rfid.ino"> Download my Arduino Code </a><br></li>
+
+
+        <br><br>
+
+        The Final Result!
+        <img alt="Boomba" src="./Boomba.jpg" width="30%">
+        <br><br>
+        Demo!:<br>
+        <video width="50%" controls>
+          <source src="./meet_Boomba.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+
+    </div>
+    
+    
+
+    <br>
+ 
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
