@@ -113,7 +113,7 @@
             strip.show();
             delay(100);
           
-          for(int i=0; i<LED_COUNT; i++) {
+          for(int i=0; i < LED_COUNT; i++) {
               strip.setPixelColor(i, 0, min(20*i, 255),0);
               strip.show();
               delay(DELAY_VAL);
@@ -144,13 +144,18 @@
           
           void loop() {
             strip.clear();
-            for(int i=0; i<LED_COUNT; i++) {
+            for(int i=0; i < LED_COUNT; i++) {
                 strip.setPixelColor(i, min(50+10*i,255),min(255-20*i,255),min(20+15*i,255));
                 strip.show();
                 delay(DELAY_VAL);
             }
           }
       </code></pre>
+
+      <video width="80%" controls>
+        <source src="./vid_mic.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
 
       <pre><code class="language-arduino"> 
         #include <Adafruit_NeoPixel.h>
@@ -179,16 +184,23 @@
           }
       </code></pre>
 
+      <video width="80%" controls>
+        <source src="./vid_mic.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
 
-      <div class="subsubhead">
+
+      <!-- <div class="subsubhead">
         1b. Use New Output Devices: Piezo Buzzers
-      </div>
+      </div> -->
 
       <div class="subsubhead">
         2. Write a Microcontroller Program with an Input AND Output: 
       </div>
 
       RFID tag activates a light!
+
+
 
       <div class="subsubhead">
         3. Use Oscilloscope
@@ -197,7 +209,8 @@
       <div class="subsubhead">
         4. Prepare CAD Files for CNC
       </div>
-        
+      
+      See <a href="../08_CNC_mold/index.html">Week 8</a>!
         I wanted to do something a bit different/not precisely one of the examples for the capacitative sensor I made (haha not better though, just different).
         <br>
         Using the <a href="https://nathanmelenbrink.github.io/ps70/06_input/index.html">Tx-Rx capacitative sensing tutorial</a> from Nathan, 
@@ -226,10 +239,7 @@
         For the other sensor, I used the Mems Mic, which I also explored in <a href=../04_microcontroller/index.html >Week 4</a>.
         Below, you can see my method of measurement: taking the top value recorded by the Serial Monitor when playing the same <a href="https://youtu.be/7DLIBePMFTs">loud buzzer sound</a> from YouTube at each of 17 volume levels on my iPhone, including zero volume.
         <br>
-        <video width="80%" controls>
-          <source src="./vid_mic.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
+        
         <br>
         <img alt="Graph of Quantity vs. Volume" src="./Volume.png" width=80%>
         <br>
