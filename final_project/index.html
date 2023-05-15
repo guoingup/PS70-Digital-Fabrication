@@ -775,17 +775,265 @@ void loop() {
         I, on the other hand, can't use delay because my RFID reader must always be on the lookout for a new shotglass.
 
         <ul>
-          <li>First, I simply had one screen be displayed whenever int screen was equal to that screen's number. Unfortunately, this resulted in the issue </li>
-          <li>Finally, Geoff suggested I utilize a while loop, as he had done in his code. It was perfect! I could display the screen once, then loop through all the other necessary functions, including monitoring for new shotglass UIDs and monitoring for screen changes (via button releases).</li>
+          <li>First, I simply had one screen be displayed whenever int screen was equal to that screen's number. 
+            Unfortunately, this resulted in the previous screen's text overflowing from behind the current screen's text -- a result of the constant looping. 
+            Even though I wrote code to fill the screen with black upon changing the screen, the screen variable is the previous screen for just a few loops before changing. </li>
+          <li>Solution? Fill with black before each display. Unfortunately, that meant the screen kept flashing the words over and over again. During the fair, one individual said it was really difficult to read.</li>
+          <li>Finally, Geoff suggested I utilize a while loop, as he had done in his code. It was perfect! I could display the screen once, then loop through all the other necessary functions, including monitoring for new shotglass UIDs and monitoring for screen changes (via button releases), then breaking the loop. 
+            It allowed the screen to play for as long as the screen was 1 (or 2 or 3) and only during that time.
+          </li>
         </ul>
 
-        
-        
-        I used one of the example. I faced a dilemma, however: the original code uses 
+        <br><br>
+        <b>Final Code, but it's just the Display Code:</b>
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          
+///////////////////////////////////////////
+/*FONT STUFF*/
+//  A processing sketch to create new fonts can be found in the Tools folder of TFT_eSPI
+//  https://github.com/Bodmer/TFT_eSPI/tree/master/Tools/Create_Smooth_Font/Create_font
 
+//  This sketch uses font files created from the Noto family of fonts:
+//  https://www.google.com/get/noto/
+
+#include "NotoSansBold15.h"
+#include "NotoSansBold36.h"
+
+// The font names are arrays references, thus must NOT be in quotes ""
+#define AA_FONT_SMALL NotoSansBold15
+#define AA_FONT_LARGE NotoSansBold36
+
+#include &lt;SPI.h&gt;
+#include &lt;TFT_eSPI.h&gt;       // Hardware-specific library
+
+TFT_eSPI tft = TFT_eSPI();
+
+//////////////////////////////////////////
+void setup(void) {
+  //Initialize important variables
+  screen = 1;
+  shotID = "";
+  shotrowind = 0;
+
+  //Begin Serial Monitor
+  Serial.begin(9600);
+  
+  //SCREEN
+  tft.begin();
+  tft.setRotation(3); //Set orientation of screen
+  tft.setTextColor(TFT_WHITE, TFT_BLACK, true); // Set the font colour AND the background colour
+  tft.setCursor(0, 0); // Set cursor at top left of screen
+  tft.setTextWrap(true); // Wrap on width
+}
+
+
+void loop() {
+
+  /*DISPLAY*/
+  if (screen == 1) {
+    if (shotID == "") {
+      tft.fillScreen(TFT_BLACK);
+      tft.setCursor(0, 0); // Set cursor at top left of screen
+      tft.loadFont(AA_FONT_SMALL);    // Must load the font first
+      
+      tft.setTextColor(TFT_WHITE, TFT_BLACK, true); // Set the font colour AND the background colour
+      tft.println("Thank you for choosing Snap Shots!");
+      tft.println("Please place a shotglass on the circle to get started.");
+      tft.unloadFont(); // Remove the font to recover memory used
+    }
+    else {
+      tft.fillScreen(TFT_BLACK);
+      tft.setCursor(0, 0); // Set cursor at top left of screen
+//      tft.loadFont(AA_FONT_SMALL);    // Must load the font first
+      tft.setTextColor(TFT_CYAN, TFT_BLACK, true);
+      
+      tft.println("ABOUT THIS SHOTGLASS: ");
+      tft.println("");
+
+   
+      tft.print("ID Number: ");
+      tft.println(shots[shotrowind][0]);
+      tft.println("");
+      
+      tft.print("Name: ");
+      tft.println(shots[shotrowind][1]);
+      tft.println("");
+      
+      tft.print("Date Acquired: ");
+      tft.println(shots[shotrowind][2]);
+      tft.println("");
+      
+      tft.print("Location Acquired: ");
+      tft.println(shots[shotrowind][3]);
+      tft.println("");
+      
+      tft.print("About: ");
+      tft.println(shots[shotrowind][4]);
+//      tft.unloadFont(); // Remove the font to recover memory used
+    }
+  }
+  else if (screen==2) {
+    tft.fillScreen(TFT_BLACK);
+    tft.setCursor(0, 0); // Set cursor at top left of screen
+    
+    tft.loadFont(AA_FONT_SMALL);    // Must load the font first
+    tft.setTextColor(TFT_WHITE, TFT_BLACK, true); // Set the font colour AND the background colour
+
+    tft.setTextWrap(true); // Wrap on width
+    tft.setTextColor(TFT_CYAN, TFT_BLACK, true);
+    tft.println("LED KEY:");
+    tft.println("");
+    tft.println("Greens = A Gift");
+    tft.println("Purples = From Outside America");
+    tft.println("Rainbow = A Favorite Shotglass :D");
+    tft.unloadFont(); // Remove the font to recover memory used
+  }
+  else {
+    tft.fillScreen(TFT_BLACK);
+    tft.setCursor(0, 0); // Set cursor at top left of screen
+
+    tft.loadFont(AA_FONT_SMALL);    // Must load the font first
+    
+    tft.setTextColor(TFT_PURPLE, TFT_BLACK, true); // Set the font colour AND the background colour
+    tft.setTextWrap(true); // Wrap on width
+    tft.setTextColor(TFT_BLUE, TFT_BLACK, true);
+//    tft.println("Get this -- Screen 3!!!");
+    tft.println("You can find my website at https://guoingup.github.io/PS70-Digital-Fabrication/");
+  }
+
+  //WHILE LOOP
+  while (true) {
+    //Check for screen changes
+    //Check for new shotglasses
+    }
+  }
+  }
+}
+        </code></pre>
+        <br><br>
+        I also wanted to display a QR code to my website or some other photo using Flash PNG code, as seen here:
+
+        <video width="30%" controls>
+          <source src="./media/vid_panda.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <br><br>
+        I temporarily scrapped this idea as there were a lot of debugging issue and the QR code doesn't add too much to the usability. I hope to implement it in the future, however!
+        <br><br>
         <div class="subsubhead">
           2. Buttons and Screens
         </div>
+
+        I used buttons to scroll through different screens, specifically an up button and a down button. 
+        Simple push buttons like the ones I used all face a similar issue: they toggle between HIGH and LOW several times in what's called chattering.
+        I used <a href="https://esp32io.com/tutorials/esp32-button-debounce">this debounce tutorial</a> and the ezButton.h Arduino library to solve this issue.
+
+        <br><br>
+        Then, I simply write code such that pressing the down button increases the screen number by 1 
+        (or goes from the last screen to the first screen) 
+        and pressing the up button decreases the screen number by (or goes from the first screen to the last screen)
+        <br><br>
+        <b>Final Code, but it's just the Button Code:</b>
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          /*Screen Number
+          1 = Main screen 
+          2 = LED KEY
+          3 = WEBSITE LINK or QR Code if time
+          */
+          
+          int screen;
+          String shotID;
+          int shotrowind;
+          
+          ///////////////////////////////////////////
+          /*BUTTON STUFF*/
+          #include &lt;ezButton.h&gt;
+          #define DEBOUNCE_TIME 50 // the debounce time in millisecond, increase this time if it still chatters
+          ezButton upbutton(22); // create ezButton object that attach to pin GIOP21
+          ezButton downbutton(21); // create ezButton object that attach to pin GIOP21
+
+          void setup(void) {
+            //Initialize important variables
+            screen = 1;
+            shotID = "";
+            shotrowind = 0;
+          
+            //Begin Serial Monitor
+            Serial.begin(9600);
+            
+            //BUTTON
+            downbutton.setDebounceTime(DEBOUNCE_TIME); // set debounce time to 50 milliseconds
+            upbutton.setDebounceTime(DEBOUNCE_TIME);
+          }
+
+            void loop() {
+              /*DISPLAY*/
+              if (screen == 1) {
+                if (shotID == "") {
+                  //display screen about placing a shotglass on to begin
+                }
+                else {
+                  //display screen 1
+                }
+              }
+              else if (screen==2) {
+                //display screen 2
+              }
+              else {
+                //display screen 3
+              }
+            
+              //WHILE LOOP
+              while (true) {
+                downbutton.loop(); // MUST call the loop() function first
+                upbutton.loop();
+            
+                if (downbutton.isPressed()) {
+                  tft.fillScreen(TFT_BLACK);
+                  Serial.println("The down button is pressed");
+                }
+                
+                if (downbutton.isReleased()) {
+                  Serial.println("The down button is released");
+                  Serial.print("Screen number was: ");
+                  Serial.println(screen);
+                  if (screen == 3) {
+                    screen = 1;
+                  }
+                  else {
+                    screen++;
+                  }
+                  Serial.println("Screen number is now: ");
+                  Serial.println(screen);
+                  break;
+                }
+              
+                if (upbutton.isPressed()) {
+                  tft.fillScreen(TFT_BLACK);
+                  Serial.println("The up button is pressed");
+                }
+                
+                if (upbutton.isReleased()) {
+                  Serial.println("The up button is released");
+                  Serial.print("Screen number was: ");
+                  Serial.println(screen);
+                  if (screen == 1) {
+                    screen = 3;
+                  }
+                  else {
+                    screen--;
+                  }
+                  Serial.println("Screen number is now: ");
+                  Serial.println(screen);
+                  break;
+                } 
+            
+            
+                //CHECK FOR NEW SHOTGLASS:
+              }
+            }
+        </code></pre>
+        
 
         <div class="subsubhead">
           3. 2D Array, Excel, and RFID Reading
