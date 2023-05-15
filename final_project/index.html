@@ -613,28 +613,6 @@ void loop() {
         </code></pre>
 
         <div class="subsubhead">
-          2. Screen Demo
-        </div>
-
-        <video width="50%" controls>
-          <source src="./media/vid_panda.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-
-        <div class="subsubhead">
-          3. Button Demo
-        </div>
-
-        <video width="50%" controls>
-          <source src="./media/vid_buttons.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-
-        <!-- <div class="subsubhead">
-          4. Zooming In: RFID Code
-        </div> -->
-
-        <div class="subsubhead">
           4. Zooming In: Arrays
         </div>
         I used Excel to create the 2D array that holds all of the shotglass information, simply CONCATENATE-ing columns to make the list easy and simple to expand upon.
@@ -779,8 +757,8 @@ void loop() {
             Unfortunately, this resulted in the previous screen's text overflowing from behind the current screen's text -- a result of the constant looping. 
             Even though I wrote code to fill the screen with black upon changing the screen, the screen variable is the previous screen for just a few loops before changing. </li>
           <li>Solution? Fill with black before each display. Unfortunately, that meant the screen kept flashing the words over and over again. During the fair, one individual said it was really difficult to read.</li>
-          <li>Finally, Geoff suggested I utilize a while loop, as he had done in his code. It was perfect! I could display the screen once, then loop through all the other necessary functions, including monitoring for new shotglass UIDs and monitoring for screen changes (via button releases), then breaking the loop. 
-            It allowed the screen to play for as long as the screen was 1 (or 2 or 3) and only during that time.
+          <li>Finally, Geoff suggested I utilize a while (true) loop, as he had done in his code. It was perfect! By putting all my display code <i>before</i> the while(true) loop, then putting all the other necessary looping functions like including monitoring for new shotglass UIDs and monitoring for screen changes (via button releases) into the while(true) loop, 
+            I was able to display the screen once, yet instantly change it upon a screen or shotglass change.
           </li>
         </ul>
 
@@ -929,9 +907,10 @@ void loop() {
         I used <a href="https://esp32io.com/tutorials/esp32-button-debounce">this debounce tutorial</a> and the ezButton.h Arduino library to solve this issue.
 
         <br><br>
-        Then, I simply write code such that pressing the down button increases the screen number by 1 
+        Then, I write code such that pressing the down or up button turns the screen black; releasing the down button increases the screen number by 1 
         (or goes from the last screen to the first screen) 
-        and pressing the up button decreases the screen number by (or goes from the first screen to the last screen)
+        and releasing the up button decreases the screen number by (or goes from the first screen to the last screen).
+        After the screen variable is changed, I break from the while (true) loop to allow for the display to change.
         <br><br>
         <b>Final Code, but it's just the Button Code:</b>
         <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
@@ -1033,7 +1012,13 @@ void loop() {
               }
             }
         </code></pre>
-        
+
+        <b>Button Test:</b>
+        <br>
+        <video width="50%" controls>
+          <source src="./media/vid_buttons.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
 
         <div class="subsubhead">
           3. 2D Array, Excel, and RFID Reading
