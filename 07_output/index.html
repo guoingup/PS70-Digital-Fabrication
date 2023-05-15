@@ -7,6 +7,7 @@
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   
     <!-- Internal Stylesheets -->
     <!-- <link href="./style.css" rel="stylesheet"> -->
@@ -197,12 +198,80 @@
       <div class="subsubhead">
         2. Write a Microcontroller Program with an Input AND Output: 
       </div>
+      The following code uses the MEMS Mic to take audio as an input, and uses a relay and pump to make the flow of water the output.
 
-      RFID tag activates a light!
+      <br><br>
+      When any reasonably loud noise is being made, the current will flow! And at an ambient room-level of noise, the current will not flow.
+      <br><br>
+
+      <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+        /*********
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/esp32-relay-module-ac-web-server/
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+*********/
+const int relay = 40;
+
+const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
+ unsigned int sample;
+
+ void setup() 
+ {
+    Serial.begin(9600);
+    pinMode(relay, OUTPUT); //set relay pin as an OUTPUT
+ }
+
+
+ void loop() 
+ {
+    unsigned long startMillis= millis();  // Start of sample window
+    unsigned int peakToPeak = 0;   // peak-to-peak level
+
+    unsigned int signalMax = 0;
+    unsigned int signalMin = 1024;
+
+    // collect data for 50 mS
+    while (millis() - startMillis < sampleWindow)
+    {
+       sample = analogRead(0);   //reading DC pin from pin A0
+       if (sample < 1024)  // toss out spurious readings
+       {
+          if (sample > signalMax)
+          {
+             signalMax = sample;  // save just the max levels
+          }
+          else if (sample < signalMin)
+          {
+             signalMin = sample;  // save just the min levels
+          }
+       }
+    }
+    peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
+
+    Serial.println(peakToPeak);
+    
+    //If there's some noise, let the current flow.
+    if (peakToPeak > 20) {
+      digitalWrite(relay, LOW);
+      Serial.println("Current Flowing");
+      delay(5000); 
+    }
+    //If there's no loud noises, don't let the current flow.
+    else {
+      digitalWrite(relay, HIGH);
+      Serial.println("Current not Flowing");
+      delay(1000);
+    }
+ }
+      </code></pre>
+      <li><a download href="./input_output/input_output.ino"> Download my Arduino Code </a><br></li>
+      <br><br>
 
 
 
-      <div class="subsubhead">
+      <!-- <div class="subsubhead">
         3. Use Oscilloscope
       </div>
 
@@ -210,55 +279,10 @@
         4. Prepare CAD Files for CNC
       </div>
       
-      See <a href="../08_CNC_mold/index.html">Week 8</a>!
-        I wanted to do something a bit different/not precisely one of the examples for the capacitative sensor I made (haha not better though, just different).
-        <br>
-        Using the <a href="https://nathanmelenbrink.github.io/ps70/06_input/index.html">Tx-Rx capacitative sensing tutorial</a> from Nathan, 
-        I made a pretty crude angle sensor, made up of two (copper?) metal strips taped loosely together by insulating tape, 
-        such that the strips can still bend. 
-
-        Using alligator clips and a protractor, I can measure the actual angle without touching the strips and the quantity produced by the Arduino program on Serial Monitor.
-        
-        <br><br>
-        <b>Example:</b> (not the actual measurements I used! I was a bit more precise about where I was holding the strips. This is just to show how it works and that the serial monitor's values change with the angle.)
-        <br>
-        <video width="80%" controls>
-          <source src="./vid_angle.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-        <br><b>Chart:</b><br>
-        <img alt="Graph of Quantity vs. Angle" src="./Quantity vs. Angle.png" width=80%>
-        <br>
-        Tada! It gets much more accurate and sensitive at the close range of 0-20 degrees. I would need less bendy strips to ensure better angle accuracy at the single degree-level.
-        <br><br><br>
-        <hr>
-        <br>
-        <div class="subsubhead">
-        2. Make Another Sensor: Mems Mic
-      </div>
-        For the other sensor, I used the Mems Mic, which I also explored in <a href=../04_microcontroller/index.html >Week 4</a>.
-        Below, you can see my method of measurement: taking the top value recorded by the Serial Monitor when playing the same <a href="https://youtu.be/7DLIBePMFTs">loud buzzer sound</a> from YouTube at each of 17 volume levels on my iPhone, including zero volume.
-        <br>
-        
-        <br>
-        <img alt="Graph of Quantity vs. Volume" src="./Volume.png" width=80%>
-        <br>
-        I found a relatively smooth curve, which made me pretty happy! I'm sure taking the average of many serial monitor values would yield even better results (compared to my taking the highest value I saw).
-      <br>
-      <br>
-      <hr>
-      <!-- Part 2 -->
-      <div class="subsubhead">
-        Future Hope: BPM Sensor, RFID Sensor
-      </div>
-      In the future, I'd like to make a BPM Sensor as well as a RFID sensor! 
-      <br><br><br>
-    </div>
-    
-
-    <br>
+      See <a href="../08_CNC_mold/index.html">Week 8</a>! -->
  
-  </div>
+    </div>
+  
 
 </body>
 
