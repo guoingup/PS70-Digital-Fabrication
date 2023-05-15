@@ -55,14 +55,14 @@
     <ol>
         <li><b class="blue">How To</b>
             <ul>
-                <li>Capacitative Sensing</li>
+                <li>Implement Output Devices</li>
+                <li>Integrate Input and Output Devices On Microcontrollers</li>
             </ul>   
         </li>
         <li><b class="blue">Explorations</b>
             <ul>
-                <li>Make my own Capacitative Sensor: Angle Sensor
-                <li>Mic: Audio Sensor
-                <li>Future: BPM, RFID</li>
+                <li>Use New Output Devices: LED Strips</li>
+                <li>Write a Microcontroller Program with Input and Output</li>
             </ul>        
         </li>
     </ol>
@@ -80,11 +80,11 @@
 
       <hr>
       <div class="subsubhead">
-        1a. Use New Output Devices: LED Strips
+        1. Use New Output Devices: LED Strips
       </div>
 
       <br><b>Code:</b><br>
-      <pre><code class="language-arduino">
+      <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
         #include <Adafruit_NeoPixel.h>
 
           #define LED_PIN   9   //The pin connected to the NeoPixels.
@@ -124,8 +124,16 @@
             }
           }
       </code></pre>
+      <br><b>Pixel Strip:</b><br>
 
-      <pre><code class="language-arduino">
+      <video width="80%" controls>
+        <source src="./IMG_3050.MOV" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+
+      <br><br>
+      <br><b>Code:</b><br>
+      <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
         #include <Adafruit_NeoPixel.h>
 
           #define LED_PIN   9   //The pin connected to the NeoPixels.
@@ -153,12 +161,16 @@
           }
       </code></pre>
 
+      <br><b>Pixel Strip:</b><br>
+      
       <video width="80%" controls>
-        <source src="./vid_mic.MOV" type="video/mp4">
+        <source src="./IMG_3051.MOV" type="video/mp4">
       Your browser does not support the video tag.
       </video>
 
-      <pre><code class="language-arduino"> 
+      <br><br>
+      <br><b>Code:</b><br>
+      <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted"> 
         #include <Adafruit_NeoPixel.h>
 
           #define LED_PIN   9   //The pin connected to the NeoPixels.
@@ -185,8 +197,10 @@
           }
       </code></pre>
 
+      <br><b>Pixel Strip:</b><br>
+      
       <video width="80%" controls>
-        <source src="./vid_mic.MOV" type="video/mp4">
+        <source src="./IMG_3052.MOV" type="video/mp4">
       Your browser does not support the video tag.
       </video>
 
@@ -194,9 +208,11 @@
       <!-- <div class="subsubhead">
         1b. Use New Output Devices: Piezo Buzzers
       </div> -->
+      <br>
+      <hr>
       <br><br>
       <div class="subsubhead">
-        2. Write a Microcontroller Program with an Input AND Output: 
+        2. Write a Microcontroller Program with an Input AND Output
       </div>
       The following code uses the MEMS Mic to take audio as an input, and uses a relay and pump to make the flow of water the output.
 
