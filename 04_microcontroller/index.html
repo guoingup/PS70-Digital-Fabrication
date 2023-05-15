@@ -7,7 +7,8 @@
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <!-- Internal Stylesheets -->
     <!-- <link href="./style.css" rel="stylesheet"> -->
     <link href="../static/styles.css" rel="stylesheet">
@@ -144,35 +145,80 @@
           <source src="./vid_mic.MOV" type="video/mp4">
         Your browser does not support the video tag.
         </video>
+
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
+ unsigned int sample;
+
+ void setup() 
+ {
+    Serial.begin(9600);
+ }
+
+
+ void loop() 
+ {
+    unsigned long startMillis= millis();  // Start of sample window
+    unsigned int peakToPeak = 0;   // peak-to-peak level
+
+    unsigned int signalMax = 0;
+    unsigned int signalMin = 1024;
+
+    // collect data for 50 mS
+    while (millis() - startMillis < sampleWindow)
+    {
+       sample = analogRead(0);   //reading DC pin from pin A0
+       if (sample < 1024)  // toss out spurious readings
+       {
+          if (sample > signalMax)
+          {
+             signalMax = sample;  // save just the max levels
+          }
+          else if (sample < signalMin)
+          {
+             signalMin = sample;  // save just the min levels
+          }
+       }
+    }
+    peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
+
+    Serial.println(peakToPeak);
+ }
+        </code></pre>
+
+        <br>
+        <hr>
+
         <br><br>
         I also tried the introductory circuits in the Arduino Projects Book, in which you use a push-button to complete a circuit that lights up an LED.
         One button: <br>
-        <img class="floated" alt="Microphone Circuit" src="./pic_button.jpg" width=50%>
-        <video width="50%" controls>
-          <source src="./vid_button.MOV" type="video/mp4">
+        <img class="floated" alt="Microphone Circuit" src="./pic_onebutton.jpg" width=40%>
+        <video width="40%" controls>
+          <source src="./vid_onebutton.MOV" type="video/mp4">
         Your browser does not support the video tag.
         </video>
-        <br>
-        Two buttons: <br>
-        One button: <br>
-        <img class="floated" alt="Microphone Circuit" src="./pic_twobuttons.jpg" width=50%>
-        <video width="50%" controls>
+        <br><br>
+        Two buttons! Press either to make the LED light up: <br>
+        <img class="floated" alt="Microphone Circuit" src="./pic_twobuttons.jpg" width=40%>
+        <video width="40%" controls>
           <source src="./vid_twobuttons.MOV" type="video/mp4">
         Your browser does not support the video tag.
         </video>
-
-        <img class="floated" alt="Microphone Circuit" src="./pic_twobuttons.jpg" width=50%>
-        <video width="50%" controls>
+        <br><br>
+        Two buttons! Press both simultaneously to make the LED light up: <br>
+        <img class="floated" alt="Microphone Circuit" src="./pic_twobuttons.jpg" width=40%>
+        <video width="40%" controls>
           <source src="./vid_twobuttons2.MOV" type="video/mp4">
         Your browser does not support the video tag.
         </video>
 
+        <br><br>
       <div class="subsubhead">
         Controlling the Speed of the Motor
       </div>
       What I wanted to do was use buttons as "decrease speed" and "increase speed" buttons
       for my motorized project from last week (jumping dolphins). I was also hoping to incorporate sound
-      by 
+      with the MEM MICS Arduino code. 
 
       One button: <br>
         <img class="floated" alt="Microphone Circuit" src="./pic_button.jpg" width=50%>
