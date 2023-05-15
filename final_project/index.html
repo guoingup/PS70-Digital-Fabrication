@@ -265,7 +265,7 @@
         <div class="blue heavy">Software</div>
       </div>
         <div class="subsubhead">
-          1. Final Code
+          Final Code
         </div>
         Altogether, here is my final code for the ESP32-DevKitM-1!
         <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">    
@@ -611,13 +611,6 @@ void loop() {
               }
             }
         </code></pre>
-
-        <div class="subsubhead">
-          4. Zooming In: Arrays
-        </div>
-        I used Excel to create the 2D array that holds all of the shotglass information, simply CONCATENATE-ing columns to make the list easy and simple to expand upon.
-        <br>
-        <img alt="Box Design" src="./media/excel.png" width="80%">
 
         <br><br><br>
       <!-- //////////////////////////////////////////////////////////////////// -->
@@ -1023,7 +1016,30 @@ void loop() {
         <div class="subsubhead">
           3. 2D Array, Excel, and RFID Reading
         </div>
+
+        Finally, the arguably most important aspect of the code: recognizing specific shotglasses and outputting different information based upon that.
+
+        To store all of the shotglass information in the code, I created a 2D array of String objects:
       
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          //CREATE ARRAY
+          const int n_shotglasses = 5;
+          const int n_parameters = 8;
+          //1 (ID) 2 (Name) 3 (Date acquired) 4(Location acquired) 5(About) 6(Favorite?) 7(Gift?) 8(Outside US?)
+          String shots[ n_shotglasses ][ n_parameters ] = {
+          {"D7 F2 A1 75", "Luca's Hometown", "January 6th, 2023", "Basel, Switzerland","This shotglass represents winter break of 2022-2023, one of my favorite breaks of all time which I spent with my best friend Maddie, Luca, Stephanie, and Izzy from UCambridge! This shotglass came specifically from a shop in Basel, Switzerland, the hometown of my friend Luca where we stayed at his home for a night before heading to the Swiss alps for some snowboarding. Earlier on the trip we visited Madrid and London, too.","Yes","No","Yes"},
+          {"D0 91 35 40", "Yellowstone", "Summer of 2013", "Yellowstone National Park","I got this shotglass and my Jackson Hole shotglass during a family vacation to Yellowstone National Park. I loved that trip. We drove through maybe 4 states? Including straight across Montana! So beautiful and so nice to see a different side of the states.","Yes","Yes","No"},
+          {"57 C0 92 75", "Heart Art", "January 26th, 2022", "Dora's Place in Leverett House, Cambridge, MA","My good friend Dora gave me this shotglass (and the New York one!) when I came to visit her in Lev Tower after winter break in sophomore year.","No","Yes","No"},
+          {"37 FA A1 75", "Texas", "November 2017", "Dallas, TX","I got this shotglass in Dallas during the 2017 SPJ Student Journalism Convention back when I was a sophomore in high school! I went with all the editors of my high school newspaper The Spoke, of which I would become editor-in-chief in senior year.","No","No","No"},
+          {"C7 E0 A0 75", "Wonder Woman", "July 16, 2022", "Six Flags New England","For me, this shotglass represents the summer of 2022, one of the best summers of my life. That's where I met my best friend Maddie and all the PRIMOs in my life.","Yes","No","No"}
+          };
+        </code></pre>
+        <br>
+        To make it easy to edit and expand upon in the future, I created constant variables n_shotglasses (Number of shotglasses stored) and n_parameters (Number of parameters in each shotglass row) as the dimensions of the array.
+        Then, I used Excel to create the 2D array that holds all of the shotglass information, simply CONCATENATE-ing columns to make the list easy and simple to expand upon:
+        <br>
+        <img alt="Box Design" src="./media/excel.png" width="90%">
+
       <!-- //////////////////////////////////////////////////////////////////// -->
       <div class="subhead">
         <div class="blue heavy">Future Hopes</div>
