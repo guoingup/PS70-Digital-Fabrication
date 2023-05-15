@@ -1037,9 +1037,123 @@ void loop() {
         <br>
         To make it easy to edit and expand upon in the future, I created constant variables n_shotglasses (Number of shotglasses stored) and n_parameters (Number of parameters in each shotglass row) as the dimensions of the array.
         Then, I used Excel to create the 2D array that holds all of the shotglass information, simply CONCATENATE-ing columns to make the list easy and simple to expand upon:
-        <br>
+        <br><br>
         <img alt="Box Design" src="./media/excel.png" width="90%">
+        <br>
+        (Simply copy and paste the left column into the code that creates the 2D array.)
+        <br><br>
+        Then, whenever the RFID reader senses a new UID, it sets String variable shotID equal to the UID 
+        and iterates through each row in the array to find the shotglass that matches that UID. If it finds it, 
+        then it sets the integer variable shotrowind equal to that row index. Then, I halt PICC and encryption on the PCD (meaning the reader won't continue to register this current UID as a new UID), and break the while(true) loop, allowing for the screen to change to reflect information about the shotglass.
 
+        The display code can now very easily reference information about that shotglass by referencing the shotrowind for the row and different column 
+        <br><br>
+
+        shotID = content.substring(1);
+                
+                //Iterate through the array to find the right shotglass
+                for (int i = 0; i &lt; n_shotglasses; i++) {
+                  if (shots[i][0] == shotID) {
+                    shotrowind = i; //Set shotglass ID to the right one in the array
+                  }
+                }
+
+        <br><br>
+        <b>Final Code, but it's just the RFID Code:</b>
+        <pre><code class="prettyprint lang-arduino pre-scrollable prettyprinted">
+          ///////////////////////////////////////////
+          /*RFID STUFF*/
+          #include &lt;SPI.h&gt;
+          #include &lt;MFRC522.h&gt;
+
+          //#include "Constants.h"
+          #include &lt;WiFi.h&gt;
+          #include &lt;HTTPClient.h&gt;
+          #include &lt;ArduinoJson.h&gt;
+
+          #define SS_PIN  5  //ESP32 pin GIOP5 
+          #define RST_PIN 27 //ESP32 pin GIOP20
+
+          MFRC522 rfid(SS_PIN, RST_PIN);
+
+
+          //PIN SETUP:
+          //ESP32-Mini
+          //SDA --&gt; ESP32 5 GPIO5
+          //SCK --&gt; ESP32 11 GPIO18
+          //MOSI --&gt; 23 GPIO23
+          //MISO --&gt; 19 GPIO19
+          //IRQ attached to nothing
+          //GND --&gt; GND
+          //RST --&gt; 27 GPIO27
+          //VCC --&gt; 3.3V
+
+          ///////////////////////////////////////////
+          void setup(void) {
+            //Initialize important variables
+            screen = 1;
+            shotID = "";
+            shotrowind = 0;
+
+            //Begin Serial Monitor
+            Serial.begin(9600);
+
+            //RFID
+            // Connect to the wifi
+          //  WiFi.begin(ssid, password);
+          //  while (WiFi.status() != WL_CONNECTED) {
+          //    delay(1000);
+          //    Serial.println("Connecting to WiFi");
+          //  }
+          //  Serial.println("Connected to the WiFi network");
+            
+            SPI.begin(); // init SPI bus
+            rfid.PCD_Init(); // init MFRC522
+
+            Serial.println("Tap an RFID/NFC tag on the RFID-RC522 reader");
+          }
+
+          void loop() {
+            /*DISPLAY*/
+
+            //WHILE LOOP
+            while (true) {
+              //Check for buttons being pressed/screens being changed
+          
+              //CHECK FOR NEW SHOTGLASS:
+              if (rfid.PICC_IsNewCardPresent()) { // new tag is available
+              if (rfid.PICC_ReadCardSerial()) { // NUID has been readed
+                // print Tag Type
+                MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
+                Serial.print("RFID/NFC Tag Type: ");
+                Serial.println(rfid.PICC_GetTypeName(piccType));
+          
+                // print UID in Serial Monitor in the hex format
+                Serial.print("UID:");
+                String content = "";
+                byte letter;
+                for (byte i = 0; i &lt; rfid.uid.size; i++) {
+                  Serial.print(rfid.uid.uidByte[i] &lt; 0x10 ? " 0" : " ");
+                  Serial.print(rfid.uid.uidByte[i], HEX);
+                  content.concat(String(rfid.uid.uidByte[i] &lt; 0x10 ? " 0" : " "));
+                  content.concat(String(rfid.uid.uidByte[i], HEX));
+                }
+                Serial.println();
+                content.toUpperCase();
+                Serial.println(content.substring(1));
+                
+                
+                rfid.PICC_HaltA(); // halt PICC
+                rfid.PCD_StopCrypto1(); // stop encryption on PCD
+                break;
+              }
+            }
+            }
+          }
+        </code></pre>
+        <br><br><br>
+        <hr>
+        <br>
       <!-- //////////////////////////////////////////////////////////////////// -->
       <div class="subhead">
         <div class="blue heavy">Future Hopes</div>
