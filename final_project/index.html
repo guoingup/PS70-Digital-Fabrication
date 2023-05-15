@@ -751,6 +751,47 @@ void loop() {
         <hr>
         <br>
       <!-- //////////////////////////////////////////////////////////////////// -->
+
+      <div class="subhead">
+        <div class="blue heavy">The Process: Writing The Code</div>
+      </div>
+
+        My code has 3 main variables: 
+        <ol>
+          <li><b>screen</b>, an integer that describes which screen we are currently viewing.</li>
+          <li><b>shotID</b>, a String that is "" if no tagged shotglass has yet been placed on the box and holds the unique UID of the most recent shotglass to be placed on the box.</li>
+          <li><b>shotrowind</b>, an integer that holds the row index of the current shotglass in the 2D array of shotglass information. By relying on this variable, I can cut down on active memory usage while the program is running.</li>
+        </ol>
+        <br>
+        <div class="subsubhead">
+          1. 2.8" TFT SPI Display Code
+        </div>
+
+        To program the TFT display, I read through <a href="http://arduino-er.blogspot.com/2020/06/esp32-devkitc-28inch-240x320-spi-tft.html">this tutorial</a> 
+        and utilized the TFT_eSPI Arduino library, starting with the "Font_Demo_1_Array" example.
+
+        <br><br>
+        Just one issue: the example uses delay to keep the screen steady between screen transitions! 
+        I, on the other hand, can't use delay because my RFID reader must always be on the lookout for a new shotglass.
+
+        <ul>
+          <li>First, I simply had one screen be displayed whenever int screen was equal to that screen's number. Unfortunately, this resulted in the issue </li>
+          <li>Finally, Geoff suggested I utilize a while loop, as he had done in his code. It was perfect! I could display the screen once, then loop through all the other necessary functions, including monitoring for new shotglass UIDs and monitoring for screen changes (via button releases).</li>
+        </ul>
+
+        
+        
+        I used one of the example. I faced a dilemma, however: the original code uses 
+
+        <div class="subsubhead">
+          2. Buttons and Screens
+        </div>
+
+        <div class="subsubhead">
+          3. 2D Array, Excel, and RFID Reading
+        </div>
+      
+      <!-- //////////////////////////////////////////////////////////////////// -->
       <div class="subhead">
         <div class="blue heavy">Future Hopes</div>
       </div>
